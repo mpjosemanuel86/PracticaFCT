@@ -1,3 +1,5 @@
+package com.example.practicafct.ui.model.adapter
+
 import android.content.DialogInterface.OnClickListener
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +8,14 @@ import com.example.practicafct.Facturas
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafct.R
-import com.example.practicafct.adapter.FacturasViewHolder
+import com.example.practicafct.ui.model.adapter.FacturasViewHolder
 
 class FacturasAdapter(
-    private val facturasList: List<Facturas>,
+    private var facturasList: List<Facturas>,
     private val onClickListener: (Facturas) -> Unit
 ) : RecyclerView.Adapter<FacturasViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FacturasViewHolder {
-
         val layoutInflater = LayoutInflater.from(parent.context)
         return FacturasViewHolder(layoutInflater.inflate(R.layout.item_facturas, parent, false))
     }
@@ -26,4 +27,9 @@ class FacturasAdapter(
 
     override fun getItemCount(): Int = facturasList.size
 
+    // Función para actualizar los datos del adaptador
+    fun updateData(newFacturasList: List<Facturas>) {
+        facturasList = newFacturasList
+        notifyDataSetChanged()
+    }
 }

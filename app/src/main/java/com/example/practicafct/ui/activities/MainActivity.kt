@@ -1,9 +1,10 @@
-package com.example.practicafct
+package com.example.practicafct.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.example.practicafct.R
 
 class MainActivity : AppCompatActivity() {
 
