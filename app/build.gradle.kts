@@ -47,6 +47,11 @@ dependencies {
     implementation (libs.glide)
     implementation (libs.retrofit2.retrofit)
     implementation (libs.retrofit2.converter.gson)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.fragment.ktx)
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
