@@ -1,4 +1,4 @@
-package com.example.practicafct
+package com.example.practicafct.data.retrofit.reponse
 
 data class Facturas(
     val fecha: String,
