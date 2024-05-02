@@ -13,64 +13,64 @@ import com.example.practicafct.data.FacturasRepository
 import com.example.practicafct.data.room.FacturaModelRoom
 import kotlinx.coroutines.launch
 
+// ViewModel para la actividad de facturas
 class FacturaActivityViewModel: ViewModel() {
 
     private lateinit var facturaRepository: FacturasRepository
 
-    private var facturas: List<FacturaModelRoom> = emptyList()
-
+    // Lista de facturas filtradas
     private val _filteredFacturasLiveData = MutableLiveData<List<FacturaModelRoom>>()
     val filteredFacturasLiveData: LiveData<List<FacturaModelRoom>>
         get() = _filteredFacturasLiveData
 
-
+    // Flag para indicar si se debe usar la API para obtener las facturas
     private var useAPI = false
-
 
     init {
         initRepository()
         fetchInvoices()
     }
 
+    // Inicializa el repositorio de facturas
     fun initRepository() {
         facturaRepository = FacturasRepository()
     }
 
+    // Función para obtener las facturas
     fun fetchInvoices() {
         viewModelScope.launch {
+            // Obtiene las facturas almacenadas localmente
             _filteredFacturasLiveData.postValue(facturaRepository.getAllFacturasFromRoom())
             try {
+                // Verifica si hay conexión a Internet
                 if (isInternetAvailable()) {
+                    // Si hay conexión a Internet, obtiene las facturas de la API o de la base de datos local
                     when (useAPI) {
                         true -> facturaRepository.fetchAndInsertFacturasFromAPI()
-                        //Hasta que implemente retromock
-                        false -> facturaRepository.fetchAndInsertFacturasFromAPI()
+                        false -> facturaRepository.fetchAndInsertFacturasFromAPI() // Hasta que se implemente retromock
                     }
-                    facturas = facturaRepository.getAllFacturasFromRoom()
+                    // Actualiza la lista de facturas
+                    val facturas = facturaRepository.getAllFacturasFromRoom()
                     _filteredFacturasLiveData.postValue(facturas)
-
-
                 }
             } catch (e: Exception) {
                 Log.d("Error", e.printStackTrace().toString())
             }
-
         }
     }
 
+    // Función para verificar la disponibilidad de conexión a Internet
     private fun isInternetAvailable(): Boolean {
         val connectivityManager =
             MyApplication.context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val network=connectivityManager.activeNetwork
-        val capabilities=connectivityManager.getNetworkCapabilities(network)
+        val network = connectivityManager.activeNetwork
+        val capabilities = connectivityManager.getNetworkCapabilities(network)
 
-        return capabilities!=null&&(
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)||
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)||
-                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+        // Verifica si hay una conexión disponible y si es Wi-Fi, celular o Ethernet
+        return capabilities != null && (
+                capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                        capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
                 )
     }
-
-
-
 }
