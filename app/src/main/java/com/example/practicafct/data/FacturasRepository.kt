@@ -29,6 +29,7 @@ class FacturasRepository() {
 
     // Función suspendida para obtener facturas desde la API y luego insertarlas en la base de datos Room
     suspend fun fetchAndInsertFacturasFromAPI() {
+        facturaDAO.deleteAllFacturasFromRoom()
         // Obtiene las facturas desde la API
         val facturasFromAPI = getFacturas() ?: emptyList()
         // Mapea las facturas obtenidas desde la API a objetos FacturaModelRoom
@@ -40,6 +41,25 @@ class FacturasRepository() {
             )
         }
         // Inserta las facturas mapeadas en la base de datos Room
+        insertFacturasInRoom(facturasRoom)
+    }
+
+    suspend fun getFacturasMock(): List<FacturaModelRoom>?{
+        return api.getFacturasRetroMock()
+    }
+
+    suspend fun fetchAndInsertFacturasFromMock(){
+        facturaDAO.deleteAllFacturasFromRoom()
+        val facturasFromMock = getFacturasMock()?: emptyList()
+        val facturasRoom = facturasFromMock.map { factura ->
+            FacturaModelRoom(
+                descEstado = factura.descEstado,
+                importeOrdenacion = factura.importeOrdenacion,
+                fecha = factura.fecha
+
+            )
+        }
+
         insertFacturasInRoom(facturasRoom)
     }
 }

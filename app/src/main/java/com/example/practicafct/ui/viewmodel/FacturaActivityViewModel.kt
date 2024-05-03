@@ -8,13 +8,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.infinum.retromock.Retromock
 import com.example.practicafct.MyApplication
+import com.example.practicafct.MyApplication.Companion.context
 import com.example.practicafct.data.FacturasRepository
 import com.example.practicafct.data.room.FacturaModelRoom
 import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import java.security.Provider
+
 
 // ViewModel para la actividad de facturas
-class FacturaActivityViewModel: ViewModel() {
+class FacturaActivityViewModel() : ViewModel() {
 
     private lateinit var facturaRepository: FacturasRepository
 
@@ -22,6 +27,8 @@ class FacturaActivityViewModel: ViewModel() {
     private val _filteredFacturasLiveData = MutableLiveData<List<FacturaModelRoom>>()
     val filteredFacturasLiveData: LiveData<List<FacturaModelRoom>>
         get() = _filteredFacturasLiveData
+
+
 
     // Flag para indicar si se debe usar la API para obtener las facturas
     private var useAPI = false
@@ -47,11 +54,11 @@ class FacturaActivityViewModel: ViewModel() {
                     // Si hay conexión a Internet, obtiene las facturas de la API o de la base de datos local
                     when (useAPI) {
                         true -> facturaRepository.fetchAndInsertFacturasFromAPI()
-                        false -> facturaRepository.fetchAndInsertFacturasFromAPI() // Hasta que se implemente retromock
+                        false -> facturaRepository.fetchAndInsertFacturasFromMock() // Hasta que se implemente retromock
                     }
                     // Actualiza la lista de facturas
-                    val facturas = facturaRepository.getAllFacturasFromRoom()
-                    _filteredFacturasLiveData.postValue(facturas)
+
+                    _filteredFacturasLiveData.postValue(facturaRepository.getAllFacturasFromRoom())
                 }
             } catch (e: Exception) {
                 Log.d("Error", e.printStackTrace().toString())

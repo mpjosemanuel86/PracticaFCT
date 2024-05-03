@@ -53,6 +53,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.fragment.ktx)
+    implementation (libs.retromock)
+    implementation ("co.infinum:retromock:1.1.1")
 
 
     kapt(libs.androidx.room.compiler)

@@ -7,6 +7,7 @@ kotlin = "1.9.0"
 coreKtx = "1.12.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
+retromock = "1.1.1"
 roomKtx = "2.6.1"
 
 espressoCore = "3.5.1"
@@ -35,6 +36,7 @@ retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", v
 retrofit2-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomKtx" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+retromock = { module = "co.infinum:retromock", version.ref = "retromock" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
