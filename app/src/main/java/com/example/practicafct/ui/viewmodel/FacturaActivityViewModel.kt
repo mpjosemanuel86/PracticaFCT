@@ -80,4 +80,10 @@ class FacturaActivityViewModel() : ViewModel() {
                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
                 )
     }
+
+// Método para cambiar el estado de useAPI
+fun toggleDataSource(useAPI: Boolean) {
+    this.useAPI = useAPI
+    fetchInvoices() // Vuelve a obtener las facturas según el nuevo origen de datos
+}
 }

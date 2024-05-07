@@ -41,7 +41,11 @@ class FacturasActivity : AppCompatActivity() {
 
         // Llama a la función para obtener y mostrar los datos de la API
         //fetchDataFromAPI()
+        binding.switchRetromock.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.toggleDataSource(isChecked)
+        }
     }
+
 
     // Inicializa el RecyclerView con la lista de facturas
     private fun initRecyclerView(facturas: List<FacturaModelRoom>) {
@@ -52,3 +56,4 @@ class FacturasActivity : AppCompatActivity() {
         binding.recyclerFacturas.adapter = facturasAdapter
     }
 }
+

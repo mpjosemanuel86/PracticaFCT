@@ -16,8 +16,8 @@ interface APIService {
 
 interface RetroMockService {
     @Mock
-    @MockResponses(MockResponse(body = "mock.json"),)
-        @GET("resources")
+    @MockResponses(MockResponse(body = "mock.json"))
+    @GET("/")
         suspend fun getFacturasMock(): Response<FacturasList>
 
 }

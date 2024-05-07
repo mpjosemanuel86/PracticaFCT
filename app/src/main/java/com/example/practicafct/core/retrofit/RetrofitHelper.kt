@@ -10,7 +10,7 @@ object RetrofitHelper {
     // con la URL base del servidor y el convertidor Gson
     fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://viewnextandroid4.wiremockapi.cloud/")
+            .baseUrl("https://viewnextandroid.wiremockapi.cloud/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

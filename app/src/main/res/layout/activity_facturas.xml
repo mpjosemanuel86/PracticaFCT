@@ -37,6 +37,7 @@
         </TextView>
 
         <ImageButton
+            android:id="@+id/ibFiltro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -46,6 +47,17 @@
             app:tint="@color/grey">
 
         </ImageButton>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchRetromock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch"
+            android:gravity="center"
+            android:layout_marginStart="190dp"
+            android:textSize="8dp"
+
+            />
 
 
     </Toolbar>
@@ -73,7 +85,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textviewFacturas">
 
+
+
     </androidx.recyclerview.widget.RecyclerView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
