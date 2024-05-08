@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/factura_grapt"
+    app:startDestination="@id/firstFragmentFactura">
+
+    <fragment
+        android:id="@+id/firstFragmentFactura"
+        android:name="com.example.practicafct.ui.fragments.FirstFragmentFactura"
+        android:label="fragment_first_factura"
+        tools:layout="@layout/fragment_first_factura" >
+        <action
+            android:id="@+id/action_firstFragmentFactura_to_secondFragmentFactura"
+            app:destination="@id/secondFragmentFactura" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/secondFragmentFactura"
+        android:name="com.example.practicafct.ui.fragments.SecondFragmentFactura"
+        android:label="fragment_second_factura"
+        tools:layout="@layout/fragment_second_factura" />
+
+</navigation>

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToPractica1() {
-        intent = Intent(this, FacturasActivity::class.java)
+        intent = Intent(this, FacturaActivity::class.java)
         startActivity(intent)
     }
 

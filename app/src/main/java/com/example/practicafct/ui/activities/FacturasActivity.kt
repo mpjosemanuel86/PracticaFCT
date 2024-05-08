@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafct.MyApplication
 import com.example.practicafct.data.room.FacturaModelRoom
 import com.example.practicafct.databinding.ActivityFacturasBinding
+
 import com.example.practicafct.ui.model.adapter.FacturasAdapter
 import com.example.practicafct.ui.viewmodel.FacturaActivityViewModel
 
