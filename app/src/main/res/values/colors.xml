@@ -7,5 +7,7 @@
     <color name="transparent">#00000000</color>
     <color name="grey">#A8ACA4</color>
     <color name="red">#D51212</color>
+    <color name="my_light_primary">#95bb4e</color>
+
 
 </resources>

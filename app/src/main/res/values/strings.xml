@@ -2,5 +2,14 @@
     <string name="app_name">PracticaFCT</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="maxAmount">62</string>
+    <string name="pagadas">Pagadas</string>
+    <string name="anuladas">Anuladas</string>
+    <string name="cuotaFija">Cuota Fija</string>
+    <string name="pendientePago">Pendientes de pago</string>
+    <string name="planPago">Plan de pago</string>
+    <string name="btnAplicar">Aplicar</string>
+    <string name="btnEliminarFiltros">Eliminar filtros</string>
+
 
 </resources>

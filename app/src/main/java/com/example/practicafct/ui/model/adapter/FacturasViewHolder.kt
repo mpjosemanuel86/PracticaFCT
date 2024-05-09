@@ -29,10 +29,11 @@ class FacturasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Asigna los datos de la factura a las vistas dentro del layout del elemento de factura
         binding.tvFechaFactura.text = facturasModel.fecha
         binding.tvEstadoFactura.text = facturasModel.descEstado
-        binding.tvImporteFactura.text = facturasModel.importeOrdenacion.toString()
+        val importeConEuro = "${facturasModel.importeOrdenacion} €"
+        binding.tvImporteFactura.text = importeConEuro
 
         // Configura un OnClickListener en el elemento de factura para mostrar el cuadro de diálogo de alerta
-        binding.clRecyclerFacturas.setOnClickListener{
+        binding.clRecyclerFacturas.setOnClickListener {
             setAlertDialog()
         }
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Otros atributos de estilo -->
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">26sp</item> <!-- Tamaño del texto -->
+        <item name="android:textStyle">bold</item> <!-- Estilo del texto -->
+    </style>
+</resources>

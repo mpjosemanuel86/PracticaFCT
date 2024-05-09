@@ -23,9 +23,6 @@
             android:name=".ui.activities.Practica_2"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.FacturasActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
