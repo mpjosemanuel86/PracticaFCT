@@ -1,6 +1,6 @@
 {
   "cau": "ES0021000000001994LJ1FA000",
-  "estadoSolicitudAlta": "No hemos recibido ninguna solicitud de autoconsumo",
+  "estadoSolicitud": "No hemos recibido ninguna solicitud de autoconsumo",
   "tipoAutoconsumo": "Con excedentes y compensación individual - Consumo",
   "compensacionExcedentes": "Precio PVPC",
   "potenciaInstalacion": "5KWp"

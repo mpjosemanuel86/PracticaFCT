@@ -8,7 +8,7 @@ import com.example.practicafct.data.FacturasRepository
 import com.example.practicafct.data.room.DatosSmartSolarRoom
 import kotlinx.coroutines.launch
 
-class DetailsSmartSolarViewmodel: ViewModel() {
+class DatosSmartSolarViewModel: ViewModel() {
 
     private lateinit var appRepository: FacturasRepository
     private val _energyDataLiveData = MutableLiveData<DatosSmartSolarRoom>()

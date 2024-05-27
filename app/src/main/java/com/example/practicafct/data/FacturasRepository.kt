@@ -36,6 +36,7 @@ class FacturasRepository() {
         }
     }
 
+
     // Función suspendida para obtener las facturas desde la API
     suspend fun getFacturas(): List<FacturaModelRoom>? {
         return api.getFacturas()

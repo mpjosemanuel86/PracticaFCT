@@ -10,6 +10,8 @@ data class Detalles (
     val potenciaInstalacion: String
 ){
     fun asDatosSmartSolarModelRoom(): DatosSmartSolarRoom {
+
+
         return DatosSmartSolarRoom(
             cau,
             estadoSolicitud,

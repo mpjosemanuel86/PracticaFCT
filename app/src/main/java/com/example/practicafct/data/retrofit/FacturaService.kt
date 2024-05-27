@@ -16,20 +16,44 @@ class FacturaService {
 
     // Función suspendida que obtiene las facturas desde la API de forma asíncrona
     suspend fun getFacturas(): List<FacturaModelRoom>? {
+        try {
         // Se hace la llamada a la API para obtener las facturas
         val response = retrofitBuilder.create(APIService::class.java).getFacturas()
+        if (response.isSuccessful) {
         // Se extraen las facturas del cuerpo de la respuesta
         val facturas = response.body()?.facturas
-        // Se devuelve la lista de facturas
-        return facturas
+
+            if (facturas.isNullOrEmpty()) {
+                return emptyList()
+            } else {
+                return facturas
+            }
+        } else {
+            return null
+        }
+
+    } catch (e: Exception) {
+        return null
     }
+}
 
     suspend fun getFacturasRetroMock(): List<FacturaModelRoom>?{
-        val reponse =  retromockBuilder.create(RetroMockService::class.java ).getFacturasMock()
-        val facturasMock = reponse.body()?.facturas
-        return facturasMock
-
+        try{
+        val response =  retromockBuilder.create(RetroMockService::class.java ).getFacturasMock()
+        if (response.isSuccessful) {
+            val invoices = response.body()?.facturas
+            if (invoices.isNullOrEmpty()) {
+                return emptyList()
+            } else {
+                return invoices
+            }
+        } else {
+            return null
+        }
+    } catch (e: Exception) {
+        return null
     }
+}
     suspend fun getDatosSmartSolarFromRetromock(): Detalles?{
         val response = retromockBuilder.create(DatosSmartSolarRetroMock::class.java).getDatosSmartSolarFromMock()
         if (response.isSuccessful && response.body() != null) {
