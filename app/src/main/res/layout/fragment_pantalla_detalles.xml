@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.PantallaDetallesFragment">
+    tools:context=".ui.fragments.SmartSolarDetallesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="CAU (Código Autoconsumo)"
+        android:textColor="@color/grey"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/tvCAU"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvCAU"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="ES0021000000001994LJ1FA000"
+        android:inputType="none"
+        android:id="@+id/etCAU"
+        android:focusable="false"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:layout_marginTop="18dp"
+        android:id="@+id/tvEstado"
+        app:layout_constraintTop_toBottomOf="@+id/etCAU"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Estado solicitud alta autoconsumidor"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvEstado"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="No hemos recibido ninguna solicitud de autoconsumo"
+        android:inputType="none"
+        android:id="@+id/etEstado"
+        android:focusable="false"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:layout_marginTop="18dp"
+        android:id="@+id/tvTipo"
+        app:layout_constraintTop_toBottomOf="@+id/etEstado"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Tipo autoconsumo"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Con excedentes y compensación individual - Consumo"
+        android:inputType="none"
+        android:id="@+id/etTipo"
+        android:focusable="false"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:layout_marginTop="18dp"
+        android:id="@+id/tvCompensacion"
+        app:layout_constraintTop_toBottomOf="@+id/etTipo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Compensación de excedentes"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompensacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Precio PVPC"
+        android:inputType="none"
+        android:id="@+id/etCompensacion"
+        android:focusable="false"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grey"
+        android:layout_marginTop="18dp"
+        android:id="@+id/tvPotencia"
+        app:layout_constraintTop_toBottomOf="@+id/etCompensacion"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Potencia de instalación"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvPotencia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="5kWp"
+        android:inputType="none"
+        android:id="@+id/etPotencia"
+        android:focusable="false"
+        />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

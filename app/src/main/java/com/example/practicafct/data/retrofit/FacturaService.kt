@@ -1,5 +1,7 @@
 package com.example.practicafct.data.retrofit
 
+import android.util.Log
+import com.example.practicafct.data.retrofit.network.Detalles
 import com.example.practicafct.core.retrofit.RetrofitHelper
 import com.example.practicafct.core.retromock.RetroMockHelper
 import com.example.practicafct.data.room.FacturaModelRoom
@@ -27,5 +29,15 @@ class FacturaService {
         val facturasMock = reponse.body()?.facturas
         return facturasMock
 
+    }
+    suspend fun getDatosSmartSolarFromRetromock(): Detalles?{
+        val response = retromockBuilder.create(DatosSmartSolarRetroMock::class.java).getDatosSmartSolarFromMock()
+        if (response.isSuccessful && response.body() != null) {
+            val detailsData = response.body()
+            return detailsData
+        } else{
+            Log.d("DETAILS_TAB", "Ha ocurrido un error")
+            return null
+        }
     }
 }

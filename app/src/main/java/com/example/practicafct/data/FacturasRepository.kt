@@ -1,6 +1,8 @@
 package com.example.practicafct.data
 
 import com.example.practicafct.data.retrofit.FacturaService
+import com.example.practicafct.data.retrofit.network.Detalles
+import com.example.practicafct.data.room.DatosSmartSolarRoom
 import com.example.practicafct.data.room.FacturaDatabase
 import com.example.practicafct.data.room.FacturaModelRoom
 
@@ -11,6 +13,28 @@ class FacturasRepository() {
 
     // Instancia del DAO (Data Access Object) para interactuar con la base de datos Room
     val facturaDAO = FacturaDatabase.getAppDBInstance().getFacturaDao()
+    val datosSmartSolarDAO = FacturaDatabase.getAppDBInstance().getDatosSmartSolarDAO()
+
+
+    suspend fun getDatosSmartSolarFromRetromMock(): Detalles? {
+        return api.getDatosSmartSolarFromRetromock()
+    }
+
+    suspend fun insertDatosSmartSolarInRoom(detailsSmartSolarRoom: DatosSmartSolarRoom){
+        datosSmartSolarDAO.insertDatosInRoom(detailsSmartSolarRoom)
+    }
+
+    fun getDatosSmartSolarFromRoom(): DatosSmartSolarRoom{
+        return datosSmartSolarDAO.getDatosFromRoom()
+    }
+
+    suspend fun fetchAndInsertDatosSmartSolarFromMock(){
+        val energiaDetalle = getDatosSmartSolarFromRetromMock()
+        val energiaDetalleRoom = energiaDetalle?.asDatosSmartSolarModelRoom()
+        if (energiaDetalleRoom != null){
+            insertDatosSmartSolarInRoom(energiaDetalleRoom)
+        }
+    }
 
     // Función suspendida para obtener las facturas desde la API
     suspend fun getFacturas(): List<FacturaModelRoom>? {

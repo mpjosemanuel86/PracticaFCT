@@ -6,16 +6,16 @@ import androidx.room.RoomDatabase
 import com.example.practicafct.MyApplication
 
 // Definición de la base de datos Room que contiene la tabla de facturas
-@Database(entities = [FacturaModelRoom::class], version = 1, exportSchema = false)
+@Database(entities = [FacturaModelRoom::class, DatosSmartSolarRoom::class], version = 1, exportSchema = false)
 abstract class FacturaDatabase: RoomDatabase(){
 
     // Método abstracto para obtener el DAO (Data Access Object) asociado a la tabla de facturas
     abstract fun getFacturaDao(): FacturaDAO
+    abstract fun getDatosSmartSolarDAO(): DatosSmartSolarDAO
 
     // Singleton para obtener una instancia única de la base de datos
     companion object{
         private var DB_INSTANCE: FacturaDatabase?=null
-
 
         // Método estático para obtener una instancia de la base de datos
         fun getAppDBInstance(): FacturaDatabase{

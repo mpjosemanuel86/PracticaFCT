@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.example.practicafct.R
 
 
-
 class PantallaEnergiaFragment : Fragment() {
 
 
