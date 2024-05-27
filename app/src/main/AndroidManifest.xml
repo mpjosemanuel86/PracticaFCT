@@ -20,7 +20,7 @@
             android:name=".ui.activities.FacturaActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.Practica_2"
+            android:name=".ui.activities.SmartSolarActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.MainActivity"

@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateToPractica2() {
-        intent = Intent(this, Practica_2::class.java)
+        intent = Intent(this, SmartSolarActivity::class.java)
         startActivity(intent)
     }
 }
