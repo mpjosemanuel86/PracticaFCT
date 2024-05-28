@@ -11,5 +11,17 @@
     <string name="btnAplicar">Aplicar</string>
     <string name="btnEliminarFiltros">Eliminar filtros</string>
 
+    <!-- activity_login.xml -->
+    <string name="correo_loginActivity">Eliminar filtros</string>
+    <string name="contraseña_loginActivity">Eliminar filtros</string>
+    <string name="recordarUsuario_loginActivity">Eliminar filtros</string>
+    <string name="recordarContraseña_loginActivity">Eliminar filtros</string>
+    <string name="btnEntrar_loginActivity">Eliminar filtros</string>
+    <string name="btnRegistrarse_loginActivity">Eliminar filtros</string>
+    <string name="tambienPuedes_loginActivity">Eliminar filtros</string>
+
+
+
+    email_loginActivity
 
 </resources>

@@ -4,10 +4,11 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="green">#90BC5D</color>
-    <color name="transparent">#00000000</color>
+    <color name="transparente">#00000000</color>
     <color name="grey">#A8ACA4</color>
     <color name="red">#D51212</color>
     <color name="my_light_primary">#95bb4e</color>
+    <color name="seed">#95bb4e</color>
 
 
 </resources>

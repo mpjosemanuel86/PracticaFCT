@@ -23,7 +23,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/transparent"
+            android:background="@color/transparente"
             android:src="@drawable/ic_chevron_left"
             app:tint="@color/green">
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="20dp"
-            android:background="@color/transparent"
+            android:background="@color/transparente"
             android:src="@drawable/ic_filter"
             app:tint="@color/grey">
 
