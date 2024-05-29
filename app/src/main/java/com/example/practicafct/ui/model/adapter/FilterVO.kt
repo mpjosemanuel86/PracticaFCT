@@ -1,9 +1,13 @@
 package com.example.practicafct.ui.model.adapter
 
 
-data class FilterVO(
-    var maxDate: String = "",
-    var minDate: String = "",
-    var maxValueSlider: Double = 0.0,
-    var status: HashMap<String, Boolean> = HashMap()
-)
+data class Filtros(
+    val minDate: String,
+    val maxDate: String,
+    val maxValueSlider: Double,
+    val status: HashMap<String, Boolean>
+) {
+    override fun toString(): String {
+        return "Filters(minDate='$minDate', maxDate='$maxDate', maxValueSlider=$maxValueSlider, status=$status)"
+    }
+}

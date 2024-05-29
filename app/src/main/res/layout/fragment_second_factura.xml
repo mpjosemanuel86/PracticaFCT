@@ -88,6 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDesde" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnHasta"
         android:layout_width="150dp"
         android:layout_height="35dp"
         android:layout_marginTop="10dp"
@@ -142,7 +143,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPorUnImporte" />
 
     <TextView
-        android:id="@+id/tvMinSeekBar"
+        android:id="@+id/tvMaxSeekBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -154,7 +155,7 @@
         app:layout_goneMarginEnd="16dp" />
 
     <TextView
-        android:id="@+id/tvMaxSeekBar"
+        android:id="@+id/tvMinSeekBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -165,11 +166,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPorUnImporte" />
 
-    <SeekBar
-        android:id="@+id/seekBar"
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:max="300"
@@ -178,6 +178,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvPorUnImporte" />
+
 
     <View
         android:id="@+id/view2"
@@ -189,7 +190,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="5dp"
         android:background="#DDDDDD"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/slider" />
 
     <TextView
         android:id="@+id/tvPorEstado"
@@ -256,7 +257,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cbPendientePago" />
 
         <Button
-            android:id="@+id/btnFiltros"
+            android:id="@+id/btnAplicarFiltros"
             android:text="@string/btnAplicar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -271,6 +272,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnFiltros"/>
+        app:layout_constraintTop_toBottomOf="@id/btnAplicarFiltros"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
