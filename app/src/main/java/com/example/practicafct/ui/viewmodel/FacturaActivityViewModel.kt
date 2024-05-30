@@ -8,42 +8,52 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.infinum.retromock.Retromock
+
 import com.example.practicafct.MyApplication
-import com.example.practicafct.MyApplication.Companion.context
+import com.example.practicafct.constants.Constants
 import com.example.practicafct.data.FacturasRepository
+
+
 import com.example.practicafct.data.room.FacturaModelRoom
+import com.example.practicafct.ui.model.adapter.Filtros
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import java.security.Provider
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 // ViewModel para la actividad de facturas
 class FacturaActivityViewModel() : ViewModel() {
 
     private lateinit var facturaRepository: FacturasRepository
-
-    // Lista de facturas filtradas
-    private val _filteredFacturasLiveData = MutableLiveData<List<FacturaModelRoom>>()
-    val filteredFacturasLiveData: LiveData<List<FacturaModelRoom>>
+    private var _filteredFacturasLiveData = MutableLiveData<List<FacturaModelRoom>>()
+    var useRetrofitService = false
+    private var invoices: List<FacturaModelRoom> = emptyList()
+    val filteredInvoicesLiveData: LiveData<List<FacturaModelRoom>>
         get() = _filteredFacturasLiveData
 
 
+    private var _maxAmount: Float = 0.0f
+    var maxAmount = 0.0f
+        get() = _maxAmount
 
-    // Flag para indicar si se debe usar la API para obtener las facturas
+    private var _filterLiveData = MutableLiveData<Filtros>()
+    val filterLiveData: LiveData<Filtros>
+        get() = _filterLiveData
+
+
+
     private var useAPI = false
-
     init {
         initRepository()
         fetchInvoices()
     }
 
-    // Inicializa el repositorio de facturas
     fun initRepository() {
         facturaRepository = FacturasRepository()
     }
 
-    // Función para obtener las facturas
     fun fetchInvoices() {
         viewModelScope.launch {
             // Obtiene las facturas almacenadas localmente
@@ -66,7 +76,6 @@ class FacturaActivityViewModel() : ViewModel() {
         }
     }
 
-    // Función para verificar la disponibilidad de conexión a Internet
     private fun isInternetAvailable(): Boolean {
         val connectivityManager =
             MyApplication.context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -81,7 +90,149 @@ class FacturaActivityViewModel() : ViewModel() {
                 )
     }
 
-// Método para cambiar el estado de useAPI
+    fun searchInvoices() {
+        viewModelScope.launch {
+            invoices = facturaRepository.getAllFacturasFromRoom()
+            _filteredFacturasLiveData.postValue(invoices)
+            try {
+                if (isInternetAvailable()) {
+                    if (useRetrofitService) {
+                        // Si hay conexión a Internet, usar Retrofit
+                        facturaRepository.fetchAndInsertFacturasFromMock()
+                        Log.d("Retromock", "Usando Retromock")
+                    } else {
+                        facturaRepository.fetchAndInsertFacturasFromAPI()
+                        Log.d("Retrofit", "Usando Retrofit")
+                    }
+                } else {
+                    // Si no hay conexión a Internet, usar Retromock
+                    facturaRepository.fetchAndInsertFacturasFromMock()
+                    Log.d("Retromock", "Usando Retromock")
+                }
+                invoices = facturaRepository.getAllFacturasFromRoom()
+                _filteredFacturasLiveData.postValue(invoices)
+            } catch (e: Exception) {
+                Log.d("Error", e.printStackTrace().toString())
+            }
+        }
+    }
+
+    fun applyFilters(
+        maxDate: String,
+        minDate: String,
+        maxValueSlider: Double,
+        status: HashMap<String, Boolean>
+    ) {
+        val filtro = Filtros(minDate, maxDate, maxValueSlider, status)
+        Log.d("InvoiceViewmodel", "Aplicando filtros: $filtro")
+        _filterLiveData.postValue(filtro)
+        verificarFiltros()
+    }
+
+    fun verificarFiltros() {
+        Log.d("InvoiceViewmodel", "Verificando filtros")
+        val currentFilters = _filterLiveData.value
+        if (currentFilters != null) {
+            var filteredList = invoices.toList()
+            filteredList = verificarDatosFiltro(filteredList, currentFilters)
+            filteredList = verificarCheckBox(filteredList, currentFilters)
+            filteredList = verificarBalanceBar(filteredList, currentFilters)
+            Log.d("InvoiceViewmodel", "Lista filtrada: ${filteredList.size}")
+            _filteredFacturasLiveData.postValue(filteredList)
+        } else {
+            Log.d("InvoiceViewmodel", "No se encontraron filtros para aplicar")
+        }
+    }
+
+    private fun verificarDatosFiltro(filteredList: List<FacturaModelRoom>, filters: Filtros): List<FacturaModelRoom> {
+        val maxDate = filters.maxDate
+        val minDate = filters.minDate
+        val filteredListResult = ArrayList<FacturaModelRoom>()
+
+        if (!maxDate.isNullOrEmpty() && !minDate.isNullOrEmpty()) {
+            val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            var minDateLocal: Date? = null
+            var maxDateLocal: Date? = null
+
+            try {
+                minDateLocal = simpleDateFormat.parse(minDate)
+                maxDateLocal = simpleDateFormat.parse(maxDate)
+            } catch (e: ParseException) {
+                Log.d("Error", "Error al analizar las fechas: ${e.message}")
+            }
+
+            Log.d("VerificarDatosFiltro", "minDateLocal: $minDateLocal, maxDateLocal: $maxDateLocal")
+
+            for (factura in filteredList) {
+                var invoiceDate = Date()
+                try {
+                    invoiceDate = simpleDateFormat.parse(factura.fecha)!!
+                } catch (e: ParseException) {
+                    Log.d("Error", "Error al analizar la fecha de la factura: ${e.message}")
+                }
+
+                Log.d("VerificarDatosFiltro", "invoiceDate: $invoiceDate")
+
+                if (invoiceDate.after(minDateLocal) && invoiceDate.before(maxDateLocal)) {
+                    filteredListResult.add(factura)
+                }
+            }
+        }
+
+        return filteredListResult
+    }
+
+    private fun verificarCheckBox(filteredInvoices: List<FacturaModelRoom>, filters: Filtros): List<FacturaModelRoom> {
+        val filteredInvoicesCheckBox = ArrayList<FacturaModelRoom>()
+        val status = filters.status
+        //Se obtienen los estados de las CheckBoxes.
+        val checkBoxPaid = status[Constants.PAID_STRING] ?: false
+        val checkBoxCanceled = status[Constants.CANCELED_STRING] ?: false
+        val checkBoxFixedPayment = status[Constants.FIXED_PAYMENT_STRING] ?: false
+        val checkBoxPendingPayment = status[Constants.PENDING_PAYMENT_STRING] ?: false
+        val checkBoxPaymentPlan = status[Constants.PAYMENT_PLAN_STRING] ?: false
+
+        Log.d("VerificarCheckBox", "checkBoxPaid=$checkBoxPaid, checkBoxCanceled=$checkBoxCanceled, checkBoxFixedPayment=$checkBoxFixedPayment, checkBoxPendingPayment=$checkBoxPendingPayment, checkBoxPaymentPlan=$checkBoxPaymentPlan")
+
+        if (checkBoxPaid || checkBoxCanceled || checkBoxFixedPayment || checkBoxPendingPayment || checkBoxPaymentPlan) {
+            for (invoice in filteredInvoices) {
+                val invoiceState = invoice.descEstado
+                val isPaid = invoiceState == "Pagada"
+                val isCanceled = invoiceState == "Anuladas"
+                val isFixedPayment = invoiceState == "Cuota fija"
+                val isPendingPayment = invoiceState == "Pendiente de pago"
+                val isPaymentPlan = invoiceState == "planPago"
+
+                Log.d("VerificarCheckBox", "invoiceState=$invoiceState, isPaid=$isPaid, isCanceled=$isCanceled, isFixedPayment=$isFixedPayment, isPendingPayment=$isPendingPayment, isPaymentPlan=$isPaymentPlan")
+
+                if ((isPaid && checkBoxPaid) || (isCanceled && checkBoxCanceled) || (isFixedPayment && checkBoxFixedPayment) || (isPendingPayment && checkBoxPendingPayment) || (isPaymentPlan && checkBoxPaymentPlan)) {
+                    filteredInvoicesCheckBox.add(invoice)
+                }
+            }
+            return filteredInvoicesCheckBox
+        } else {
+            return filteredInvoices
+        }
+    }
+
+    private fun verificarBalanceBar(filteredList: List<FacturaModelRoom>, filters: Filtros): List<FacturaModelRoom> {
+        val filteredInvoicesBalanceBar = ArrayList<FacturaModelRoom>()
+        val maxValueSlider = filters.maxValueSlider
+
+        Log.d("VerificarBalanceBar", "maxValueSlider=$maxValueSlider")
+
+        if (maxValueSlider > 0) {  // Ignorar el filtro si maxValueSlider es 0
+            for (factura in filteredList) {
+                Log.d("VerificarBalanceBar", "factura.importeOrdenacion=${factura.importeOrdenacion}")
+                if (factura.importeOrdenacion < maxValueSlider) {
+                    filteredInvoicesBalanceBar.add(factura)
+                }
+            }
+            return filteredInvoicesBalanceBar
+        }
+        return filteredList
+    }
+
 fun toggleDataSource(useAPI: Boolean) {
     this.useAPI = useAPI
     fetchInvoices() // Vuelve a obtener las facturas según el nuevo origen de datos

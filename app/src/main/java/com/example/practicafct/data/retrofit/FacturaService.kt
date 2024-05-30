@@ -6,7 +6,7 @@ import com.example.practicafct.core.retrofit.RetrofitHelper
 import com.example.practicafct.core.retromock.RetroMockHelper
 import com.example.practicafct.data.room.FacturaModelRoom
 
-// Esta clase se encarga de manejar las llamadas a la API utilizando Retrofit
+
 class FacturaService {
 
     // Se obtiene una instancia de Retrofit utilizando un helper
