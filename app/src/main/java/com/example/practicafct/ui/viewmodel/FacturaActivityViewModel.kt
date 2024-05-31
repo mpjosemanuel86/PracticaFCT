@@ -43,37 +43,13 @@ class FacturaActivityViewModel() : ViewModel() {
         get() = _filterLiveData
 
 
-
-    private var useAPI = false
     init {
         initRepository()
-        fetchInvoices()
+        searchInvoices()
     }
 
     fun initRepository() {
         facturaRepository = FacturasRepository()
-    }
-
-    fun fetchInvoices() {
-        viewModelScope.launch {
-            // Obtiene las facturas almacenadas localmente
-            _filteredFacturasLiveData.postValue(facturaRepository.getAllFacturasFromRoom())
-            try {
-                // Verifica si hay conexión a Internet
-                if (isInternetAvailable()) {
-                    // Si hay conexión a Internet, obtiene las facturas de la API o de la base de datos local
-                    when (useAPI) {
-                        true -> facturaRepository.fetchAndInsertFacturasFromAPI()
-                        false -> facturaRepository.fetchAndInsertFacturasFromMock() // Hasta que se implemente retromock
-                    }
-                    // Actualiza la lista de facturas
-
-                    _filteredFacturasLiveData.postValue(facturaRepository.getAllFacturasFromRoom())
-                }
-            } catch (e: Exception) {
-                Log.d("Error", e.printStackTrace().toString())
-            }
-        }
     }
 
     private fun isInternetAvailable(): Boolean {
@@ -90,39 +66,7 @@ class FacturaActivityViewModel() : ViewModel() {
                 )
     }
 
-    fun searchInvoices() {
-        viewModelScope.launch {
-            invoices = facturaRepository.getAllFacturasFromRoom()
-            _filteredFacturasLiveData.postValue(invoices)
-            try {
-                if (isInternetAvailable()) {
-                    if (useRetrofitService) {
-                        // Si hay conexión a Internet, usar Retrofit
-                        facturaRepository.fetchAndInsertFacturasFromMock()
-                        Log.d("Retromock", "Usando Retromock")
-                    } else {
-                        facturaRepository.fetchAndInsertFacturasFromAPI()
-                        Log.d("Retrofit", "Usando Retrofit")
-                    }
-                } else {
-                    // Si no hay conexión a Internet, usar Retromock
-                    facturaRepository.fetchAndInsertFacturasFromMock()
-                    Log.d("Retromock", "Usando Retromock")
-                }
-                invoices = facturaRepository.getAllFacturasFromRoom()
-                _filteredFacturasLiveData.postValue(invoices)
-            } catch (e: Exception) {
-                Log.d("Error", e.printStackTrace().toString())
-            }
-        }
-    }
-
-    fun applyFilters(
-        maxDate: String,
-        minDate: String,
-        maxValueSlider: Double,
-        status: HashMap<String, Boolean>
-    ) {
+    fun applyFilters(maxDate: String, minDate: String, maxValueSlider: Double, status: HashMap<String, Boolean>){
         val filtro = Filtros(minDate, maxDate, maxValueSlider, status)
         Log.d("InvoiceViewmodel", "Aplicando filtros: $filtro")
         _filterLiveData.postValue(filtro)
@@ -144,6 +88,7 @@ class FacturaActivityViewModel() : ViewModel() {
         }
     }
 
+
     private fun verificarDatosFiltro(filteredList: List<FacturaModelRoom>, filters: Filtros): List<FacturaModelRoom> {
         val maxDate = filters.maxDate
         val minDate = filters.minDate
@@ -161,7 +106,10 @@ class FacturaActivityViewModel() : ViewModel() {
                 Log.d("Error", "Error al analizar las fechas: ${e.message}")
             }
 
-            Log.d("VerificarDatosFiltro", "minDateLocal: $minDateLocal, maxDateLocal: $maxDateLocal")
+            Log.d(
+                "VerificarDatosFiltro",
+                "minDateLocal: $minDateLocal, maxDateLocal: $maxDateLocal"
+            )
 
             for (factura in filteredList) {
                 var invoiceDate = Date()
@@ -192,7 +140,10 @@ class FacturaActivityViewModel() : ViewModel() {
         val checkBoxPendingPayment = status[Constants.PENDING_PAYMENT_STRING] ?: false
         val checkBoxPaymentPlan = status[Constants.PAYMENT_PLAN_STRING] ?: false
 
-        Log.d("VerificarCheckBox", "checkBoxPaid=$checkBoxPaid, checkBoxCanceled=$checkBoxCanceled, checkBoxFixedPayment=$checkBoxFixedPayment, checkBoxPendingPayment=$checkBoxPendingPayment, checkBoxPaymentPlan=$checkBoxPaymentPlan")
+        Log.d(
+            "VerificarCheckBox",
+            "checkBoxPaid=$checkBoxPaid, checkBoxCanceled=$checkBoxCanceled, checkBoxFixedPayment=$checkBoxFixedPayment, checkBoxPendingPayment=$checkBoxPendingPayment, checkBoxPaymentPlan=$checkBoxPaymentPlan"
+        )
 
         if (checkBoxPaid || checkBoxCanceled || checkBoxFixedPayment || checkBoxPendingPayment || checkBoxPaymentPlan) {
             for (invoice in filteredInvoices) {
@@ -203,7 +154,10 @@ class FacturaActivityViewModel() : ViewModel() {
                 val isPendingPayment = invoiceState == "Pendiente de pago"
                 val isPaymentPlan = invoiceState == "planPago"
 
-                Log.d("VerificarCheckBox", "invoiceState=$invoiceState, isPaid=$isPaid, isCanceled=$isCanceled, isFixedPayment=$isFixedPayment, isPendingPayment=$isPendingPayment, isPaymentPlan=$isPaymentPlan")
+                Log.d(
+                    "VerificarCheckBox",
+                    "invoiceState=$invoiceState, isPaid=$isPaid, isCanceled=$isCanceled, isFixedPayment=$isFixedPayment, isPendingPayment=$isPendingPayment, isPaymentPlan=$isPaymentPlan"
+                )
 
                 if ((isPaid && checkBoxPaid) || (isCanceled && checkBoxCanceled) || (isFixedPayment && checkBoxFixedPayment) || (isPendingPayment && checkBoxPendingPayment) || (isPaymentPlan && checkBoxPaymentPlan)) {
                     filteredInvoicesCheckBox.add(invoice)
@@ -223,7 +177,10 @@ class FacturaActivityViewModel() : ViewModel() {
 
         if (maxValueSlider > 0) {  // Ignorar el filtro si maxValueSlider es 0
             for (factura in filteredList) {
-                Log.d("VerificarBalanceBar", "factura.importeOrdenacion=${factura.importeOrdenacion}")
+                Log.d(
+                    "VerificarBalanceBar",
+                    "factura.importeOrdenacion=${factura.importeOrdenacion}"
+                )
                 if (factura.importeOrdenacion < maxValueSlider) {
                     filteredInvoicesBalanceBar.add(factura)
                 }
@@ -233,8 +190,31 @@ class FacturaActivityViewModel() : ViewModel() {
         return filteredList
     }
 
-fun toggleDataSource(useAPI: Boolean) {
-    this.useAPI = useAPI
-    fetchInvoices() // Vuelve a obtener las facturas según el nuevo origen de datos
-}
+    fun searchInvoices() {
+        viewModelScope.launch {
+            invoices = facturaRepository.getAllFacturasFromRoom()
+            _filteredFacturasLiveData.postValue(invoices)
+            try {
+                if (isInternetAvailable()) {
+                    if (useRetrofitService) {
+                        // Si hay conexión a Internet, usar Retrofit
+                        facturaRepository.fetchAndInsertFacturasFromMock()
+                        Log.d("Retromock", "Usando Retromock")
+                    } else {
+                        facturaRepository.fetchAndInsertFacturasFromAPI()
+                        Log.d("Retrofit", "Usando Retrofit")
+                    }
+                } else {
+                    // Si no hay conexión a Internet, usar Retromock
+                    facturaRepository.fetchAndInsertFacturasFromMock()
+                    Log.d("Retromock", "Usando Retromock")
+                }
+                invoices = facturaRepository.getAllFacturasFromRoom()
+                _filteredFacturasLiveData.postValue(invoices)
+            } catch (e: Exception) {
+                Log.d("Error", e.printStackTrace().toString())
+            }
+        }
+    }
+
 }

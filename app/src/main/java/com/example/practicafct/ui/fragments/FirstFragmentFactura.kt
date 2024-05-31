@@ -67,7 +67,7 @@ class FirstFragmentFactura : Fragment() {
 
         val switchRetromock = view.findViewById<SwitchCompat>(R.id.switchRetromock)
         switchRetromock.setOnCheckedChangeListener { _, isChecked ->
-            viewmodel.useRetrofitService = isChecked
+            viewmodel.useRetrofitService= isChecked
             viewmodel.searchInvoices()
         }
         viewmodel.filterLiveData.observe(viewLifecycleOwner) { filter ->
