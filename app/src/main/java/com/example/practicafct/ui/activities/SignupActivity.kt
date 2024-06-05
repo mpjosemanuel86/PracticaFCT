@@ -1,6 +1,7 @@
 package com.example.practicafct.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -23,17 +24,13 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var registerButton: Button
     private var isPasswordVisible = false
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var backButton: Button
 
-    @SuppressLint("ClickableViewAccessibility")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_signup)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         // Inicializa Firebase Auth
         mAuth = FirebaseAuth.getInstance()
@@ -43,6 +40,7 @@ class SignupActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.et_signup_password)
         repeatPasswordEditText = findViewById(R.id.et_signup_password_repeat)
         registerButton = findViewById(R.id.btn_signup_register)
+        backButton = findViewById(R.id.btn_signup_back_login)
 
         // Listener para el icono del ojo
         passwordEditText.setOnTouchListener { _, event ->
@@ -60,6 +58,12 @@ class SignupActivity : AppCompatActivity() {
         registerButton.setOnClickListener {
             registerUser()
         }
+        backButton.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     private fun togglePasswordVisibility() {

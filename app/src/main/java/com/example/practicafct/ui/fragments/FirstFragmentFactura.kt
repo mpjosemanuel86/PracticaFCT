@@ -1,20 +1,17 @@
 package com.example.practicafct.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.practicafct.MyApplication
 import com.example.practicafct.R
 import com.example.practicafct.data.room.FacturaModelRoom
 import com.example.practicafct.databinding.FragmentFirstFacturaBinding
@@ -47,6 +44,12 @@ class FirstFragmentFactura : Fragment() {
             findNavController().navigate(R.id.action_firstFragmentFactura_to_secondFragmentFactura)
         }
 
+        // Configurar el ImageButton para volver a MainActivity
+        val backButton: ImageButton = view.findViewById(R.id.consumo_back)
+        backButton.setOnClickListener {
+            requireActivity().finish() // Cierra la actividad actual (el fragmento está en una actividad)
+        }
+
         // Configurar RecyclerView
         rvFacturas = binding.recyclerFacturas
         rvFacturas.layoutManager = LinearLayoutManager(requireContext())
@@ -59,7 +62,6 @@ class FirstFragmentFactura : Fragment() {
         viewmodel.filteredInvoicesLiveData.observe(viewLifecycleOwner) { invoices ->
             if (invoices != originalList) {
                 originalList = invoices
-                Log.d("ListadoFacturas", "Original List Size: ${invoices.size}")
                 facturasAdapter.updateFacturas(invoices)
             }
         }
@@ -79,7 +81,6 @@ class FirstFragmentFactura : Fragment() {
         // Observa los filtros y aplica el filtrado
         sharedViewModel.filters.observe(viewLifecycleOwner) { filters ->
             filters?.let {
-                Log.d("Filtros", "Recibidos: $filters")
                 viewmodel.applyFilters(filters.maxDate, filters.minDate, filters.maxValueSlider, filters.status)
             }
         }

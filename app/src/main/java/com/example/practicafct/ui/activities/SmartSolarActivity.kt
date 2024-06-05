@@ -1,9 +1,11 @@
 package com.example.practicafct.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.example.practicafct.databinding.ActivitySmartSolarBinding
+import com.example.practicafct.ui.activities.MainActivity
 import com.example.practicafct.ui.model.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -29,6 +31,13 @@ class SmartSolarActivity : AppCompatActivity() {
                 else -> "Detalles"
             }
         }.attach()
+
+        // Agrega un OnClickListener al MaterialToolbar
+        binding.smartSolarToolbar.setNavigationOnClickListener {
+            // Inicia la actividad MainActivity
+            startActivity(Intent(this, MainActivity::class.java))
+            // Finaliza la actividad actual
+            finish()
+        }
     }
 }
-

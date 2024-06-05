@@ -6,8 +6,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="40dp"
+    android:padding="20dp"
     tools:context=".ui.activities.SignupActivity">
+
 
     <ImageView
         android:id="@+id/iv_signup_iberdrola"

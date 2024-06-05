@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:paddingTop="30dp"
     tools:context=".ui.activities.SmartSolarActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
+
         android:layout_width="match_parent"
         android:id="@+id/smartSolarToolbar"
         android:layout_height="?attr/actionBarSize"
@@ -22,6 +24,7 @@
     </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
