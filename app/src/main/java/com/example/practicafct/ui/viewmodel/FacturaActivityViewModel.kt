@@ -61,7 +61,6 @@ class FacturaActivityViewModel : ViewModel() {
         Log.d("InvoiceViewmodel", "Aplicando filtros: $filtro")
         _filterLiveData.postValue(filtro)
         verificarFiltros()
-
     }
 
     fun verificarFiltros() {
@@ -171,7 +170,8 @@ class FacturaActivityViewModel : ViewModel() {
     fun searchInvoices() {
         viewModelScope.launch {
             invoices = facturaRepository.getAllFacturasFromRoom()
-            _filteredFacturasLiveData.postValue(invoices)
+            _filteredFacturasLiveData.postValue(invoices) // Actualizar lista original
+
             try {
                 if (isInternetAvailable()) {
                     if (useRetrofitService) {
@@ -188,7 +188,8 @@ class FacturaActivityViewModel : ViewModel() {
                     Log.d("Retromock", "Usando Retromock")
                 }
                 invoices = facturaRepository.getAllFacturasFromRoom()
-                _filteredFacturasLiveData.postValue(invoices)
+                _filteredFacturasLiveData.postValue(invoices) // Actualizar lista original después de obtener nuevas facturas
+                verificarFiltros() // Aplicar filtros después de actualizar las facturas
             } catch (e: Exception) {
                 Log.d("Error", e.printStackTrace().toString())
             }
