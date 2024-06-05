@@ -1,21 +1,45 @@
 package com.example.practicafct.ui.activities
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.text.TextUtils
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.practicafct.R
+import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var emailEditText: EditText
+    private lateinit var resetButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_forgot_password)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        auth = FirebaseAuth.getInstance()
+
+        emailEditText = findViewById(R.id.et_forgot_email)
+        resetButton = findViewById(R.id.btn_forgot_remind_password)
+
+        resetButton.setOnClickListener {
+            val email = emailEditText.text.toString().trim()
+
+            if (TextUtils.isEmpty(email)) {
+                Toast.makeText(applicationContext, "Por favor ingresa tu dirección de correo electrónico", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(applicationContext, "Correo de restablecimiento enviado correctamente", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, "No se pudo enviar el correo de restablecimiento", Toast.LENGTH_SHORT).show()
+                    }
+                }
         }
     }
 }
