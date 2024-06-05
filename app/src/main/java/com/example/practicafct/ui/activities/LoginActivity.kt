@@ -1,29 +1,18 @@
 package com.example.practicafct.ui.activities
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.text.InputType;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.text.InputType
 import android.view.MotionEvent
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.activity.enableEdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import com.example.practicafct.R;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.practicafct.R
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
@@ -41,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
+
+        if (auth.currentUser != null) {
+            navigateToMainActivity()
+            return
+        }
 
         emailEditText = findViewById(R.id.editTextTextEmailAddress)
         passwordEditText = findViewById(R.id.editTextTextPassword)
@@ -95,6 +89,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun navigateToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+
     private fun rememberUser(email: String, password: String) {
         val sharedPreferences = getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -118,7 +119,12 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                        val editor = sharedPreferences.edit()
+                        editor.remove("email")
+                        editor.remove("password")
+                        editor.apply()
+
+                        Toast.makeText(this, "Failed to automatically sign in.", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
