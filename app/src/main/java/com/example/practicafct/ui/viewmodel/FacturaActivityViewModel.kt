@@ -8,12 +8,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import com.example.practicafct.MyApplication
 import com.example.practicafct.constants.Constants
 import com.example.practicafct.data.FacturasRepository
-
-
 import com.example.practicafct.data.room.FacturaModelRoom
 import com.example.practicafct.ui.model.adapter.Filtros
 import kotlinx.coroutines.launch
@@ -22,9 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
-// ViewModel para la actividad de facturas
-class FacturaActivityViewModel() : ViewModel() {
+class FacturaActivityViewModel : ViewModel() {
 
     private lateinit var facturaRepository: FacturasRepository
     private var _filteredFacturasLiveData = MutableLiveData<List<FacturaModelRoom>>()
@@ -33,7 +28,6 @@ class FacturaActivityViewModel() : ViewModel() {
     val filteredInvoicesLiveData: LiveData<List<FacturaModelRoom>>
         get() = _filteredFacturasLiveData
 
-
     private var _maxAmount: Float = 0.0f
     var maxAmount = 0.0f
         get() = _maxAmount
@@ -41,7 +35,6 @@ class FacturaActivityViewModel() : ViewModel() {
     private var _filterLiveData = MutableLiveData<Filtros>()
     val filterLiveData: LiveData<Filtros>
         get() = _filterLiveData
-
 
     init {
         initRepository()
@@ -53,12 +46,9 @@ class FacturaActivityViewModel() : ViewModel() {
     }
 
     private fun isInternetAvailable(): Boolean {
-        val connectivityManager =
-            MyApplication.context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager = MyApplication.context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork
         val capabilities = connectivityManager.getNetworkCapabilities(network)
-
-        // Verifica si hay una conexión disponible y si es Wi-Fi, celular o Ethernet
         return capabilities != null && (
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
                         capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
@@ -66,11 +56,12 @@ class FacturaActivityViewModel() : ViewModel() {
                 )
     }
 
-    fun applyFilters(maxDate: String, minDate: String, maxValueSlider: Double, status: HashMap<String, Boolean>){
+    fun applyFilters(maxDate: String, minDate: String, maxValueSlider: Double, status: HashMap<String, Boolean>) {
         val filtro = Filtros(minDate, maxDate, maxValueSlider, status)
         Log.d("InvoiceViewmodel", "Aplicando filtros: $filtro")
         _filterLiveData.postValue(filtro)
         verificarFiltros()
+
     }
 
     fun verificarFiltros() {
@@ -87,7 +78,6 @@ class FacturaActivityViewModel() : ViewModel() {
             Log.d("InvoiceViewmodel", "No se encontraron filtros para aplicar")
         }
     }
-
 
     private fun verificarDatosFiltro(filteredList: List<FacturaModelRoom>, filters: Filtros): List<FacturaModelRoom> {
         val maxDate = filters.maxDate
@@ -106,10 +96,7 @@ class FacturaActivityViewModel() : ViewModel() {
                 Log.d("Error", "Error al analizar las fechas: ${e.message}")
             }
 
-            Log.d(
-                "VerificarDatosFiltro",
-                "minDateLocal: $minDateLocal, maxDateLocal: $maxDateLocal"
-            )
+            Log.d("VerificarDatosFiltro", "minDateLocal: $minDateLocal, maxDateLocal: $maxDateLocal")
 
             for (factura in filteredList) {
                 var invoiceDate = Date()
@@ -133,17 +120,14 @@ class FacturaActivityViewModel() : ViewModel() {
     private fun verificarCheckBox(filteredInvoices: List<FacturaModelRoom>, filters: Filtros): List<FacturaModelRoom> {
         val filteredInvoicesCheckBox = ArrayList<FacturaModelRoom>()
         val status = filters.status
-        //Se obtienen los estados de las CheckBoxes.
+
         val checkBoxPaid = status[Constants.PAID_STRING] ?: false
         val checkBoxCanceled = status[Constants.CANCELED_STRING] ?: false
         val checkBoxFixedPayment = status[Constants.FIXED_PAYMENT_STRING] ?: false
         val checkBoxPendingPayment = status[Constants.PENDING_PAYMENT_STRING] ?: false
         val checkBoxPaymentPlan = status[Constants.PAYMENT_PLAN_STRING] ?: false
 
-        Log.d(
-            "VerificarCheckBox",
-            "checkBoxPaid=$checkBoxPaid, checkBoxCanceled=$checkBoxCanceled, checkBoxFixedPayment=$checkBoxFixedPayment, checkBoxPendingPayment=$checkBoxPendingPayment, checkBoxPaymentPlan=$checkBoxPaymentPlan"
-        )
+        Log.d("VerificarCheckBox", "checkBoxPaid=$checkBoxPaid, checkBoxCanceled=$checkBoxCanceled, checkBoxFixedPayment=$checkBoxFixedPayment, checkBoxPendingPayment=$checkBoxPendingPayment, checkBoxPaymentPlan=$checkBoxPaymentPlan")
 
         if (checkBoxPaid || checkBoxCanceled || checkBoxFixedPayment || checkBoxPendingPayment || checkBoxPaymentPlan) {
             for (invoice in filteredInvoices) {
@@ -154,10 +138,7 @@ class FacturaActivityViewModel() : ViewModel() {
                 val isPendingPayment = invoiceState == "Pendiente de pago"
                 val isPaymentPlan = invoiceState == "planPago"
 
-                Log.d(
-                    "VerificarCheckBox",
-                    "invoiceState=$invoiceState, isPaid=$isPaid, isCanceled=$isCanceled, isFixedPayment=$isFixedPayment, isPendingPayment=$isPendingPayment, isPaymentPlan=$isPaymentPlan"
-                )
+                Log.d("VerificarCheckBox", "invoiceState=$invoiceState, isPaid=$isPaid, isCanceled=$isCanceled, isFixedPayment=$isFixedPayment, isPendingPayment=$isPendingPayment, isPaymentPlan=$isPaymentPlan")
 
                 if ((isPaid && checkBoxPaid) || (isCanceled && checkBoxCanceled) || (isFixedPayment && checkBoxFixedPayment) || (isPendingPayment && checkBoxPendingPayment) || (isPaymentPlan && checkBoxPaymentPlan)) {
                     filteredInvoicesCheckBox.add(invoice)
@@ -175,12 +156,9 @@ class FacturaActivityViewModel() : ViewModel() {
 
         Log.d("VerificarBalanceBar", "maxValueSlider=$maxValueSlider")
 
-        if (maxValueSlider > 0) {  // Ignorar el filtro si maxValueSlider es 0
+        if (maxValueSlider > 0) {
             for (factura in filteredList) {
-                Log.d(
-                    "VerificarBalanceBar",
-                    "factura.importeOrdenacion=${factura.importeOrdenacion}"
-                )
+                Log.d("VerificarBalanceBar", "factura.importeOrdenacion=${factura.importeOrdenacion}")
                 if (factura.importeOrdenacion < maxValueSlider) {
                     filteredInvoicesBalanceBar.add(factura)
                 }
@@ -216,5 +194,4 @@ class FacturaActivityViewModel() : ViewModel() {
             }
         }
     }
-
 }

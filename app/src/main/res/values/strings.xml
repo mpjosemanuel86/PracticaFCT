@@ -12,17 +12,30 @@
     <string name="btnEliminarFiltros">Eliminar filtros</string>
 
     <!-- activity_login.xml -->
-    <string name="correo_loginActivity">Eliminar filtros</string>
-    <string name="contraseña_loginActivity">Eliminar filtros</string>
-    <string name="recordarUsuario_loginActivity">Eliminar filtros</string>
-    <string name="recordarContraseña_loginActivity">Eliminar filtros</string>
-    <string name="btnEntrar_loginActivity">Eliminar filtros</string>
-    <string name="btnRegistrarse_loginActivity">Eliminar filtros</string>
-    <string name="tambienPuedes_loginActivity">Eliminar filtros</string>
-
+    <string name="correo_loginActivity">Usuario</string>
+    <string name="contraseña_loginActivity">Contraseña</string>
+    <string name="recordarUsuario_loginActivity">He olvidado mis datos</string>
+    <string name="recordarContraseña_loginActivity">Recordar contraseña</string>
+    <string name="btnEntrar_loginActivity">Entrar</string>
+    <string name="btnRegistrarse_loginActivity">Registrate</string>
+    <string name="tambienPuedes_loginActivity">También puedes</string>
     <string name="diaMesAnno">Dia/Mes/Año</string>
 
 
-    email_loginActivity
+    <!-- AUTHENTICATION -->
+    <string name="auth_email_hint">Correo electrónico</string>
+    <string name="auth_you_can_also">También puedes</string>
+    <string name="auth_back_to_login_btn">Iniciar sesión</string>
+    <string name="auth_password_hint">Contraseña</string>
+    <string name="auth_repeat_password_hint">Repetir contraseña</string>
+    <string name="forgot_password_explanation_question">Did you forgot your password?</string>
+    <string name="forgot_password_explanation">Indica tu email y recibirás un enlace de reinicio.</string>
+    <string name="forgot_password_remind_password">Recordar contraseña</string>
+    <string name="login_username_hint">Usuario</string>
+    <string name="login_remember_password">Recordar contraseña</string>
+    <string name="login_forgot_my_credentials">He olvidado mis datos</string>
+    <string name="login_login_btn">Entrar</string>
+    <string name="login_sign_up_btn">Registrate</string>
+    <string name="sign_up_sign_up_btn">Registrarme</string>
 
 </resources>

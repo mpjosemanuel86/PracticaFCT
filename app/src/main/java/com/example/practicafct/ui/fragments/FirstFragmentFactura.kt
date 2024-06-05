@@ -31,14 +31,13 @@ class FirstFragmentFactura : Fragment() {
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private var originalList: List<FacturaModelRoom> = emptyList()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFirstFacturaBinding.inflate(inflater, container, false)
         return binding.root
-    } // ¿Es necesario inicializar la aplicación aquí?
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,31 +57,30 @@ class FirstFragmentFactura : Fragment() {
 
         // Observa los datos filtrados
         viewmodel.filteredInvoicesLiveData.observe(viewLifecycleOwner) { invoices ->
-            originalList = invoices
-            Log.d("ListadoFacturas", "Original List Size: ${invoices.size}")
-            facturasAdapter.updateFacturas(invoices)
-            // Aquí puedes verificar los filtros si es necesario
-
+            if (invoices != originalList) {
+                originalList = invoices
+                Log.d("ListadoFacturas", "Original List Size: ${invoices.size}")
+                facturasAdapter.updateFacturas(invoices)
+            }
         }
 
         val switchRetromock = view.findViewById<SwitchCompat>(R.id.switchRetromock)
         switchRetromock.setOnCheckedChangeListener { _, isChecked ->
-            viewmodel.useRetrofitService= isChecked
+            viewmodel.useRetrofitService = isChecked
             viewmodel.searchInvoices()
         }
+
         viewmodel.filterLiveData.observe(viewLifecycleOwner) { filter ->
-            if (filter != null) {
+            filter?.let {
                 viewmodel.verificarFiltros()
             }
         }
 
-
         // Observa los filtros y aplica el filtrado
         sharedViewModel.filters.observe(viewLifecycleOwner) { filters ->
-            if (filters != null) {
+            filters?.let {
                 Log.d("Filtros", "Recibidos: $filters")
                 viewmodel.applyFilters(filters.maxDate, filters.minDate, filters.maxValueSlider, filters.status)
-
             }
         }
     }
