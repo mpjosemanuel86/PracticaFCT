@@ -1,7 +1,9 @@
 package com.example.practicafct.ui.model.adapter
 
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.practicafct.R
 import com.example.practicafct.data.retrofit.reponse.Facturas
 import com.example.practicafct.data.room.FacturaModelRoom
 import com.example.practicafct.databinding.ItemFacturasBinding
@@ -28,9 +30,24 @@ class FacturasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun render(facturasModel: FacturaModelRoom) {
         // Asigna los datos de la factura a las vistas dentro del layout del elemento de factura
         binding.tvFechaFactura.text = facturasModel.fecha
-        binding.tvEstadoFactura.text = facturasModel.descEstado
         val importeConEuro = "${facturasModel.importeOrdenacion} €"
         binding.tvImporteFactura.text = importeConEuro
+
+        // Verifica si la factura está pagada
+        if (facturasModel.descEstado == "Pagada") {
+            // Si está pagada, oculta el TextView
+            binding.tvEstadoFactura.visibility = View.GONE
+        } else {
+            // Si no está pagada, muestra el estado de la factura normalmente
+            binding.tvEstadoFactura.visibility = View.VISIBLE
+            binding.tvEstadoFactura.text = facturasModel.descEstado
+            // Establece el color del texto según el estado
+            if (facturasModel.descEstado == "Pendiente de pago") {
+                binding.tvEstadoFactura.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
+            } else {
+                binding.tvEstadoFactura.setTextColor(ContextCompat.getColor(itemView.context, R.color.transparente))
+            }
+        }
 
         // Configura un OnClickListener en el elemento de factura para mostrar el cuadro de diálogo de alerta
         binding.clRecyclerFacturas.setOnClickListener {

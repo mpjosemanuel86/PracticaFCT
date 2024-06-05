@@ -64,6 +64,7 @@ class FacturasRepository() {
                 importeOrdenacion = invoice.importeOrdenacion,
                 fecha = invoice.fecha
             )
+
         }
         // Inserta las facturas mapeadas en la base de datos Room
         insertFacturasInRoom(facturasRoom)
