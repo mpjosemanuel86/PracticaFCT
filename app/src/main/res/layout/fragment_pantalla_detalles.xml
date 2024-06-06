@@ -44,11 +44,24 @@
         app:layout_constraintTop_toBottomOf="@+id/tvEstado"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:paddingEnd="30dp"
         tools:text="No hemos recibido ninguna solicitud de autoconsumo"
         android:inputType="none"
         android:id="@+id/etEstado"
         android:focusable="false"
+
         />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_info"
+        android:backgroundTint="@color/transparente"
+        app:layout_constraintEnd_toEndOf="@id/etEstado"
+        app:layout_constraintTop_toTopOf="@id/etEstado"
+        app:layout_constraintBottom_toBottomOf="@id/etEstado"
+        app:tint="@color/blue"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

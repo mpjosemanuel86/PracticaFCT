@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
     tools:context=".ui.activities.FacturaActivity">
 
     <Toolbar
-
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -22,9 +22,10 @@
 
         <ImageButton
             android:id="@+id/consumo_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@color/transparente"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_chevron_left"
             app:tint="@color/green">
 
@@ -34,17 +35,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Consumo"
-            android:textColor="@color/green">
+            android:textColor="@color/green"
+            android:textSize="22dp">
 
         </TextView>
 
         <ImageButton
             android:id="@+id/ibFiltro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_gravity="end"
             android:layout_marginEnd="20dp"
             android:background="@color/transparente"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_filter"
             app:tint="@color/grey">
 
@@ -54,10 +57,8 @@
             android:id="@+id/switchRetromock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="190dp"
-            android:gravity="center"
             android:text="Switch"
-            android:textSize="8dp"
+            android:textSize="10dp"
 
             />
 

@@ -68,6 +68,7 @@ class SecondFragmentFactura : Fragment() {
         loadFilters()
     }
 
+
     private fun initComponents() {
         initSeekBar()
         initCheckBoxes()

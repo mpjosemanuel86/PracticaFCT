@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    android:backgroundTint="@color/white"
     android:background="@android:color/white"
     tools:context=".ui.fragments.SecondFragmentFactura">
 
@@ -11,9 +13,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:elevation="4dp"
-        android:paddingTop="64dp"
         app:contentInsetStart="16dp"
         app:contentInsetStartWithNavigation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,21 +23,18 @@
         app:title="Filtrar facturas"
         app:titleTextAppearance="@style/Toolbar.TitleText">
 
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="80dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_close" />
     </androidx.appcompat.widget.Toolbar>
-
-    <ImageButton
-        android:id="@+id/btnClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="12dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="8dp"
-        android:src="@drawable/ic_close"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/tvFechaEmision"
@@ -256,22 +254,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbPendientePago" />
 
-        <Button
-            android:id="@+id/btnAplicarFiltros"
-            android:text="@string/btnAplicar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbPlanPago"/>
+    <Button
+        android:id="@+id/btnAplicarFiltros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnAplicar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cbPlanPago" />
 
     <Button
         android:id="@+id/btnBorrarFiltros"
-        android:text="@string/btnEliminarFiltros"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/btnEliminarFiltros"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAplicarFiltros"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnAplicarFiltros" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
