@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var button1: ImageButton
     private lateinit var button2: ImageButton
+    private lateinit var button3: ImageButton
     private lateinit var ibLogout: ImageButton
+
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,23 +32,32 @@ class MainActivity : AppCompatActivity() {
     private fun initComponent() {
         button1 = findViewById(R.id.button1)
         button2 = findViewById(R.id.button2)
+        button3 = findViewById(R.id.button3)
         ibLogout = findViewById(R.id.ibLogout)
     }
 
     private fun initListeners() {
         button1.setOnClickListener { navigateToPractica1() }
         button2.setOnClickListener { navigateToPractica2() }
+        button3.setOnClickListener { navigateToPractica3() }
         ibLogout.setOnClickListener { logout() }
     }
 
     private fun navigateToPractica1() {
         intent = Intent(this, FacturaActivity::class.java)
         startActivity(intent)
+
     }
 
     private fun navigateToPractica2() {
         intent = Intent(this, SmartSolarActivity::class.java)
         startActivity(intent)
+
+    }
+    private fun navigateToPractica3() {
+        intent = Intent(this, NavegacionActivity::class.java)
+        startActivity(intent)
+
     }
 
     private fun logout() {

@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation (libs.retromock)
     implementation ("co.infinum:retromock:1.1.1")
+    implementation ("com.google.firebase:firebase-config:22.0.0")
 
 
     kapt(libs.androidx.room.compiler)
