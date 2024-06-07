@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.practicafct.R
 import com.example.practicafct.databinding.FragmentPantallaDetallesBinding
-import com.example.practicafct.ui.fragments.MyDialogFragment
 import com.example.practicafct.ui.viewmodel.DatosSmartSolarViewModel
 
 class PantallaDetallesFragment : Fragment() {

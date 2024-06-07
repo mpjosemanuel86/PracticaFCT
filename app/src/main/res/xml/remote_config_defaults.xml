@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<defaultsMap>
+    <entry>
+        <key>show_invoice_menu</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>use_alternate_style</key>
+        <value>false</value>
+    </entry>
+</defaultsMap>

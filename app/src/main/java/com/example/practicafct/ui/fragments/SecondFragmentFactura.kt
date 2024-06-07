@@ -173,7 +173,9 @@ class SecondFragmentFactura : Fragment() {
 
     private fun initApplyFiltersButton() {
         binding.btnAplicarFiltros.setOnClickListener {
-            val maxValueSlider = if (binding.tvSeekBarValue.text.toString().toDouble() == 0.0) 300.0 else binding.tvSeekBarValue.text.toString().toDouble()
+            val maxValueSlider = if (binding.tvSeekBarValue.text.toString()
+                    .toDouble() == 0.0
+            ) 300.0 else binding.tvSeekBarValue.text.toString().toDouble()
             val status = hashMapOf(
                 Constants.PAID_STRING to paid.isChecked,
                 Constants.CANCELED_STRING to canceled.isChecked,
@@ -186,9 +188,13 @@ class SecondFragmentFactura : Fragment() {
                 LocalDate.ofEpochDay(0).toDateString("dd/MM/yyyy")
             else binding.btnDesde.text.toString()
             val maxDate: String =
-                if (binding.btnHasta.text == getString(R.string.diaMesAnno)) LocalDate.now().toDateString("dd/MM/yyyy") else binding.btnHasta.text.toString()
+                if (binding.btnHasta.text == getString(R.string.diaMesAnno)) LocalDate.now()
+                    .toDateString("dd/MM/yyyy") else binding.btnHasta.text.toString()
 
-            Log.d("Filtros", "minDate: $minDate, maxDate: $maxDate, maxValueSlider: $maxValueSlider")
+            Log.d(
+                "Filtros",
+                "minDate: $minDate, maxDate: $maxDate, maxValueSlider: $maxValueSlider"
+            )
             Log.d("Filtros", "status: $status")
 
             val filters = Filtros(minDate, maxDate, maxValueSlider, status)

@@ -2,7 +2,7 @@ package com.example.practicafct.core.retromock
 
 import co.infinum.retromock.Retromock
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+
 
 object RetroMockHelper {
     fun getRetromock(retrofit: Retrofit): Retromock {

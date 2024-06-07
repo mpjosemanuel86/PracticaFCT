@@ -55,15 +55,15 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation (libs.glide)
-    implementation (libs.retrofit2.retrofit)
-    implementation (libs.retrofit2.converter.gson)
+    implementation(libs.glide)
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.retrofit2.converter.gson)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.fragment.ktx)
-    implementation (libs.retromock)
-    implementation ("co.infinum:retromock:1.1.1")
-    implementation ("com.google.firebase:firebase-config:22.0.0")
+    implementation(libs.retromock)
+    implementation("co.infinum:retromock:1.1.1")
+    implementation("com.google.firebase:firebase-config:22.0.0")
 
 
     kapt(libs.androidx.room.compiler)
@@ -72,9 +72,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
-    implementation ("com.google.firebase:firebase-auth:21.0.1")
-    implementation ("com.google.android.gms:play-services-auth:19.2.0")
+    implementation("com.google.firebase:firebase-auth:21.0.1")
+    implementation("com.google.android.gms:play-services-auth:19.2.0")
 
 }

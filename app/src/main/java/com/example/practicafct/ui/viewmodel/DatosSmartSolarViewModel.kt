@@ -8,7 +8,7 @@ import com.example.practicafct.data.FacturasRepository
 import com.example.practicafct.data.room.DatosSmartSolarRoom
 import kotlinx.coroutines.launch
 
-class DatosSmartSolarViewModel: ViewModel() {
+class DatosSmartSolarViewModel : ViewModel() {
 
     private lateinit var appRepository: FacturasRepository
     private val _energyDataLiveData = MutableLiveData<DatosSmartSolarRoom>()
@@ -20,11 +20,11 @@ class DatosSmartSolarViewModel: ViewModel() {
         fetchDatosSmartSolarData()
     }
 
-    private fun initRepository(){
+    private fun initRepository() {
         appRepository = FacturasRepository()
     }
 
-    fun fetchDatosSmartSolarData(){
+    fun fetchDatosSmartSolarData() {
         viewModelScope.launch {
             appRepository.fetchAndInsertDatosSmartSolarFromMock()
             _energyDataLiveData.postValue(appRepository.getDatosSmartSolarFromRoom())

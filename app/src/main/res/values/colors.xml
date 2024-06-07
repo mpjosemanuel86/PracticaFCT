@@ -6,12 +6,17 @@
     <color name="green">#90BC5D</color>
     <color name="blue">#03A9F4</color>
 
-
     <color name="transparente">#00000000</color>
     <color name="grey">#A8ACA4</color>
     <color name="red">#D51212</color>
     <color name="my_light_primary">#95bb4e</color>
     <color name="seed">#95bb4e</color>
 
-
+    <!-- Colores adicionales -->
+    <color name="alternatePrimary">#FF5722</color>
+    <color name="alternatePrimaryDark">#E64A19</color>
+    <color name="alternateAccent">#FFC107</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

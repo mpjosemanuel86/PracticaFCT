@@ -1,6 +1,6 @@
 package com.example.practicafct.data.retrofit.reponse
 
-import com.example.practicafct.data.retrofit.reponse.Facturas
+
 import com.example.practicafct.data.room.FacturaModelRoom
 
 data class FacturasList(

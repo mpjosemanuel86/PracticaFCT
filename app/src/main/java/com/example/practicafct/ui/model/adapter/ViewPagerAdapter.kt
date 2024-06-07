@@ -7,7 +7,8 @@ import com.example.practicafct.ui.fragments.PantallaDetallesFragment
 import com.example.practicafct.ui.fragments.PantallaEnergiaFragment
 import com.example.practicafct.ui.fragments.PantallaInstalacionFragment
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
+    FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = 3 // Número de pestañas
 

@@ -1,6 +1,5 @@
 package com.example.practicafct.ui.model.adapter
 
-
 data class Filtros(
     val minDate: String,
     val maxDate: String,

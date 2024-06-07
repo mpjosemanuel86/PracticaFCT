@@ -20,18 +20,18 @@ class FacturasRepository() {
         return api.getDatosSmartSolarFromRetromock()
     }
 
-    suspend fun insertDatosSmartSolarInRoom(detailsSmartSolarRoom: DatosSmartSolarRoom){
+    suspend fun insertDatosSmartSolarInRoom(detailsSmartSolarRoom: DatosSmartSolarRoom) {
         datosSmartSolarDAO.insertDatosInRoom(detailsSmartSolarRoom)
     }
 
-    fun getDatosSmartSolarFromRoom(): DatosSmartSolarRoom{
+    fun getDatosSmartSolarFromRoom(): DatosSmartSolarRoom {
         return datosSmartSolarDAO.getDatosFromRoom()
     }
 
-    suspend fun fetchAndInsertDatosSmartSolarFromMock(){
+    suspend fun fetchAndInsertDatosSmartSolarFromMock() {
         val energiaDetalle = getDatosSmartSolarFromRetromMock()
         val energiaDetalleRoom = energiaDetalle?.asDatosSmartSolarModelRoom()
-        if (energiaDetalleRoom != null){
+        if (energiaDetalleRoom != null) {
             insertDatosSmartSolarInRoom(energiaDetalleRoom)
         }
     }
@@ -70,13 +70,13 @@ class FacturasRepository() {
         insertFacturasInRoom(facturasRoom)
     }
 
-    suspend fun getFacturasMock(): List<FacturaModelRoom>?{
+    suspend fun getFacturasMock(): List<FacturaModelRoom>? {
         return api.getFacturasRetroMock()
     }
 
-    suspend fun fetchAndInsertFacturasFromMock(){
+    suspend fun fetchAndInsertFacturasFromMock() {
         facturaDAO.deleteAllFacturasFromRoom()
-        val facturasFromMock = getFacturasMock()?: emptyList()
+        val facturasFromMock = getFacturasMock() ?: emptyList()
         val facturasRoom = facturasFromMock.map { factura ->
             FacturaModelRoom(
                 descEstado = factura.descEstado,

@@ -60,7 +60,8 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } else {
-                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
             } else {
@@ -124,7 +125,8 @@ class LoginActivity : AppCompatActivity() {
                         editor.remove("password")
                         editor.apply()
 
-                        Toast.makeText(this, "Failed to automatically sign in.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Failed to automatically sign in.", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
         }
@@ -132,10 +134,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun togglePasswordVisibility() {
         if (isPasswordVisible) {
-            passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            passwordEditText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             passwordEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_off, 0)
         } else {
-            passwordEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            passwordEditText.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
             passwordEditText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_eye_on, 0)
         }
         passwordEditText.setSelection(passwordEditText.text.length)

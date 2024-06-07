@@ -81,7 +81,12 @@ class FirstFragmentFactura : Fragment() {
         // Observa los filtros y aplica el filtrado
         sharedViewModel.filters.observe(viewLifecycleOwner) { filters ->
             filters?.let {
-                viewmodel.applyFilters(filters.maxDate, filters.minDate, filters.maxValueSlider, filters.status)
+                viewmodel.applyFilters(
+                    filters.maxDate,
+                    filters.minDate,
+                    filters.maxValueSlider,
+                    filters.status
+                )
             }
         }
     }

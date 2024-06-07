@@ -4,7 +4,6 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practicafct.R
-import com.example.practicafct.data.retrofit.reponse.Facturas
 import com.example.practicafct.data.room.FacturaModelRoom
 import com.example.practicafct.databinding.ItemFacturasBinding
 
@@ -43,9 +42,19 @@ class FacturasViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             binding.tvEstadoFactura.text = facturasModel.descEstado
             // Establece el color del texto según el estado
             if (facturasModel.descEstado == "Pendiente de pago") {
-                binding.tvEstadoFactura.setTextColor(ContextCompat.getColor(itemView.context, R.color.red))
+                binding.tvEstadoFactura.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.red
+                    )
+                )
             } else {
-                binding.tvEstadoFactura.setTextColor(ContextCompat.getColor(itemView.context, R.color.transparente))
+                binding.tvEstadoFactura.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.transparente
+                    )
+                )
             }
         }
 

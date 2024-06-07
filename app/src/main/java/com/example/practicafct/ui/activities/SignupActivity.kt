@@ -1,6 +1,5 @@
 package com.example.practicafct.ui.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
@@ -9,10 +8,7 @@ import android.view.MotionEvent
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.practicafct.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -99,7 +95,11 @@ class SignupActivity : AppCompatActivity() {
                     Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show()
                     // TODO: Navigate to another activity or update UI
                 } else {
-                    Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "Registration failed: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }

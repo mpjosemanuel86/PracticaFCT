@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.example.practicafct.databinding.ActivitySmartSolarBinding
-import com.example.practicafct.ui.activities.MainActivity
 import com.example.practicafct.ui.model.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 

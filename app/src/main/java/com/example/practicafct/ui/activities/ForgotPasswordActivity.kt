@@ -1,6 +1,6 @@
 package com.example.practicafct.ui.activities
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -33,16 +33,28 @@ class ForgotPasswordActivity : AppCompatActivity() {
             val email = emailEditText.text.toString().trim()
 
             if (TextUtils.isEmpty(email)) {
-                Toast.makeText(applicationContext, "Por favor ingresa tu dirección de correo electrónico", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Por favor ingresa tu dirección de correo electrónico",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
             auth.sendPasswordResetEmail(email)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(applicationContext, "Correo de restablecimiento enviado correctamente", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "Correo de restablecimiento enviado correctamente",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     } else {
-                        Toast.makeText(applicationContext, "No se pudo enviar el correo de restablecimiento", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext,
+                            "No se pudo enviar el correo de restablecimiento",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         }

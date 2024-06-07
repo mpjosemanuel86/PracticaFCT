@@ -5,9 +5,7 @@ import co.infinum.retromock.meta.MockCircular
 import co.infinum.retromock.meta.MockResponse
 import co.infinum.retromock.meta.MockResponses
 import com.example.practicafct.data.retrofit.network.Detalles
-
 import com.example.practicafct.data.retrofit.reponse.FacturasList
-import com.example.practicafct.data.room.FacturaModelRoom
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -22,7 +20,7 @@ interface RetroMockService {
     @Mock
     @MockResponses(MockResponse(body = "mock.json"))
     @GET("/")
-        suspend fun getFacturasMock(): Response<FacturasList>
+    suspend fun getFacturasMock(): Response<FacturasList>
 
 }
 
