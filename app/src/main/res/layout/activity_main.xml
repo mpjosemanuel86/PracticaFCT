@@ -56,7 +56,7 @@
 
         </TextView>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             app:tint="@color/grey">
 
 
-        </ImageButton>
+        </ImageView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -107,7 +107,7 @@
 
         </TextView>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
             app:tint="@color/grey">
 
 
-        </ImageButton>
+        </ImageView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,7 +160,7 @@
 
         </TextView>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
             app:tint="@color/grey">
 
 
-        </ImageButton>
+        </ImageView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
