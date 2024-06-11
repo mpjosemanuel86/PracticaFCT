@@ -3,7 +3,7 @@
   "facturas": [
     {
       "descEstado": "Pendiente de pago",
-      "importeOrdenacion": 20000.56,
+      "importeOrdenacion": 200.56,
       "fecha": "07/02/2019"
     },
     {

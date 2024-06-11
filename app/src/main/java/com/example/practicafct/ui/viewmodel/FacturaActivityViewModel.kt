@@ -92,34 +92,46 @@ class FacturaActivityViewModel : ViewModel() {
         val minDate = filters.minDate
         val filteredListResult = ArrayList<FacturaModelRoom>()
 
-        if (!maxDate.isNullOrEmpty() && !minDate.isNullOrEmpty()) {
-            val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            var minDateLocal: Date? = null
-            var maxDateLocal: Date? = null
+        // Si los filtros de fecha están vacíos o nulos, devuelve la lista original
+        if (maxDate.isNullOrEmpty() && minDate.isNullOrEmpty()) {
+            return filteredList
+        }
 
-            try {
+        val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        var minDateLocal: Date? = null
+        var maxDateLocal: Date? = null
+
+        try {
+            if (!minDate.isNullOrEmpty()) {
                 minDateLocal = simpleDateFormat.parse(minDate)
+            }
+            if (!maxDate.isNullOrEmpty()) {
                 maxDateLocal = simpleDateFormat.parse(maxDate)
+            }
+        } catch (e: ParseException) {
+            Log.d("Error", "Error al analizar las fechas: ${e.message}")
+        }
+
+        Log.d(
+            "VerificarDatosFiltro",
+            "minDateLocal: $minDateLocal, maxDateLocal: $maxDateLocal"
+        )
+
+        for (factura in filteredList) {
+            var invoiceDate: Date? = null
+            try {
+                invoiceDate = simpleDateFormat.parse(factura.fecha)
             } catch (e: ParseException) {
-                Log.d("Error", "Error al analizar las fechas: ${e.message}")
+                Log.d("Error", "Error al analizar la fecha de la factura: ${e.message}")
             }
 
-            Log.d(
-                "VerificarDatosFiltro",
-                "minDateLocal: $minDateLocal, maxDateLocal: $maxDateLocal"
-            )
-
-            for (factura in filteredList) {
-                var invoiceDate = Date()
-                try {
-                    invoiceDate = simpleDateFormat.parse(factura.fecha)!!
-                } catch (e: ParseException) {
-                    Log.d("Error", "Error al analizar la fecha de la factura: ${e.message}")
-                }
-
+            if (invoiceDate != null) {
                 Log.d("VerificarDatosFiltro", "invoiceDate: $invoiceDate")
 
-                if (invoiceDate.after(minDateLocal) && invoiceDate.before(maxDateLocal)) {
+                val afterMinDate = minDateLocal?.let { invoiceDate.after(it) } ?: true
+                val beforeMaxDate = maxDateLocal?.let { invoiceDate.before(it) } ?: true
+
+                if (afterMinDate && beforeMaxDate) {
                     filteredListResult.add(factura)
                 }
             }
@@ -127,6 +139,8 @@ class FacturaActivityViewModel : ViewModel() {
 
         return filteredListResult
     }
+
+
 
     private fun verificarCheckBox(
         filteredInvoices: List<FacturaModelRoom>,
