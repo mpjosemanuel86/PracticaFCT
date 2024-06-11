@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.ui.text.android)
+    implementation(libs.firebase.crashlytics.buildtools)
     val navVersion = "2.7.7"
 
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
@@ -64,6 +65,12 @@ dependencies {
     implementation(libs.retromock)
     implementation("co.infinum:retromock:1.1.1")
     implementation("com.google.firebase:firebase-config:22.0.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+
+    implementation ("io.ktor:ktor-client-core:1.6.4")
+    implementation ("io.ktor:ktor-client-json:1.6.4")
+    implementation ("io.ktor:ktor-client-android:1.6.4")
+
 
 
     kapt(libs.androidx.room.compiler)

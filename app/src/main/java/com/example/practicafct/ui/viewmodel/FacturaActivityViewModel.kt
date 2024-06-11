@@ -8,12 +8,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.ktor.client.HttpClient
+
+
 import com.example.practicafct.MyApplication
 import com.example.practicafct.constants.Constants
 import com.example.practicafct.data.FacturasRepository
 import com.example.practicafct.data.room.FacturaModelRoom
 import com.example.practicafct.ui.model.adapter.Filtros
+import io.ktor.client.request.get
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -233,6 +241,22 @@ class FacturaActivityViewModel : ViewModel() {
                 verificarFiltros() // Aplicar filtros después de actualizar las facturas
             } catch (e: Exception) {
                 Log.d("Error", e.printStackTrace().toString())
+            }
+        }
+    }
+    fun searchInvoicesWithKtor() {
+        viewModelScope.launch {
+            try {
+                val newInvoices = withContext(Dispatchers.IO) {
+                    val client = HttpClient()
+                    val response: String = client.get("https://viewnextandroid4.wiremockapi.cloud/")
+                    Json.decodeFromString<List<FacturaModelRoom>>(response)
+                }
+                invoices = newInvoices
+                _filteredFacturasLiveData.postValue(invoices)
+                verificarFiltros()
+            } catch (e: Exception) {
+                Log.e("FacturaActivityViewModel", "Error al obtener las facturas: ${e.message}")
             }
         }
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -64,6 +65,11 @@ class FirstFragmentFactura : Fragment() {
                 originalList = invoices
                 facturasAdapter.updateFacturas(invoices)
             }
+        }
+        val btnLoadFromKtor: Button = view.findViewById(R.id.btnLoadFromKtor)
+        btnLoadFromKtor.setOnClickListener {
+            // Llama a la función correspondiente en el ViewModel para cargar las facturas desde Ktor
+            viewmodel.searchInvoicesWithKtor()
         }
 
         val switchRetromock = view.findViewById<SwitchCompat>(R.id.switchRetromock)

@@ -10,6 +10,6 @@ class FacturaModelRoom(
     // Importe de ordenación de la factura, se utilizará como una de las claves primarias
     val importeOrdenacion: Double,
     // Fecha de la factura, también se utilizará como una de las claves primarias
-    val fecha: String,
+    val fecha: String
 
 )
