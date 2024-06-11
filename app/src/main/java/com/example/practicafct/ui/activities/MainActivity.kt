@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.practicafct.R
 import com.google.firebase.auth.FirebaseAuth
@@ -14,9 +15,9 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var button1: ImageButton
-    private lateinit var button2: ImageButton
-    private lateinit var button3: ImageButton
+    private lateinit var secondaryContainer1: ConstraintLayout
+    private lateinit var secondaryContainer2: ConstraintLayout
+    private lateinit var secondaryContainer3: ConstraintLayout
     private lateinit var ibLogout: ImageButton
 
     private lateinit var auth: FirebaseAuth
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         val useAlternateTheme = mFirebaseRemoteConfig.getBoolean("use_alternate_style")
 
         // Mostrar u ocultar la opción de factura
-        button1.isVisible = showFacturaOption
+        secondaryContainer1.isVisible = showFacturaOption
 
         // Aplicar el tema alternativo si es necesario
         if (useAlternateTheme) {
@@ -71,16 +72,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initComponent() {
-        button1 = findViewById(R.id.button1)
-        button2 = findViewById(R.id.button2)
-        button3 = findViewById(R.id.button3)
+        secondaryContainer1 = findViewById(R.id.secondary_container1)
+        secondaryContainer2 = findViewById(R.id.secondary_container2)
+        secondaryContainer3 = findViewById(R.id.secondary_container3)
         ibLogout = findViewById(R.id.ibLogout)
     }
 
     private fun initListeners() {
-        button1.setOnClickListener { navigateToPractica1() }
-        button2.setOnClickListener { navigateToPractica2() }
-        button3.setOnClickListener { navigateToPractica3() }
+        secondaryContainer1.setOnClickListener { navigateToPractica1() }
+        secondaryContainer2.setOnClickListener { navigateToPractica2() }
+        secondaryContainer3.setOnClickListener { navigateToPractica3() }
         ibLogout.setOnClickListener { logout() }
     }
 
