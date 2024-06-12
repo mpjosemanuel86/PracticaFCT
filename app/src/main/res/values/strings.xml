@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">PracticaFCT</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="maxAmount">62</string>
     <string name="pagadas">Pagadas</string>
@@ -10,32 +9,58 @@
     <string name="planPago">Plan de pago</string>
     <string name="btnAplicar">Aplicar</string>
     <string name="btnEliminarFiltros">Eliminar filtros</string>
-
-    <!-- activity_login.xml -->
-    <string name="correo_loginActivity">Usuario</string>
-    <string name="contraseña_loginActivity">Contraseña</string>
-    <string name="recordarUsuario_loginActivity">He olvidado mis datos</string>
-    <string name="recordarContraseña_loginActivity">Recordar contraseña</string>
-    <string name="btnEntrar_loginActivity">Entrar</string>
-    <string name="btnRegistrarse_loginActivity">Registrate</string>
-    <string name="tambienPuedes_loginActivity">También puedes</string>
     <string name="diaMesAnno">Dia/Mes/Año</string>
 
-
     <!-- AUTHENTICATION -->
-    <string name="auth_email_hint">Correo electrónico</string>
-    <string name="auth_you_can_also">También puedes</string>
-    <string name="auth_back_to_login_btn">Iniciar sesión</string>
-    <string name="auth_password_hint">Contraseña</string>
-    <string name="auth_repeat_password_hint">Repetir contraseña</string>
-    <string name="forgot_password_explanation_question">Did you forgot your password?</string>
-    <string name="forgot_password_explanation">Indica tu email y recibirás un enlace de reinicio.</string>
-    <string name="forgot_password_remind_password">Recordar contraseña</string>
-    <string name="login_username_hint">Usuario</string>
-    <string name="login_remember_password">Recordar contraseña</string>
-    <string name="login_forgot_my_credentials">He olvidado mis datos</string>
-    <string name="login_login_btn">Entrar</string>
-    <string name="login_sign_up_btn">Registrate</string>
-    <string name="sign_up_sign_up_btn">Registrarme</string>
+
+    <!-- activity_login.xml -->
+    <string name="login_activity_recordar_usuario">He olvidado mis datos</string>
+    <string name="login_activity_recordar_contraseña">Recordar contraseña</string>
+    <string name="login_activity_btn_entrar">Entrar</string>
+    <string name="login_activity_btn_registrate">Registrate</string>
+    <string name="login_activity_tambien_puedes">También puedes</string>
+    <string name="login_activity_usuario_hint">Usuario</string>
+    <string name="login_activity_contraseña_hint">Contraseña</string>
+
+    <!-- ForgotPasswordActivity -->
+    <string name="forgot_password_activity_contraseña_olvidada_pregunta">¿Olvidaste tu contraseña?</string>
+    <string name="forgot_password_activity_explicacion_recuperar_contraseña">Indica tu email y recibirás un enlace de reinicio.</string>
+    <string name="forgot_password_activity_correo_hint">Correo electrónico</string>
+    <string name="forgot_password_activity_recordar_contraseña_btn">Recordar contraseña</string>
+    <string name="forgot_password_activity_tambien_puedes">También puedes</string>
+    <string name="forgot_password_activity_volver_inicio_btn">Iniciar sesión</string>
+    <string name="forgot_password_activity_repetir_contraseña_hint">Repetir contraseña</string>
+    <string name="forgot_password_activity_recordar_contraseña">Recordar contraseña</string>
+    <string name="forgot_password_activity_olvide_mis_credenciales">He olvidado mis datos</string>
+    <string name="forgot_password_activity_iniciar_sesion_btn">Entrar</string>
+    <string name="forgot_password_activity_registrarse_btn">Registrate</string>
+    <string name="forgot_password_activity_boton_registrarse">Registrarme</string>
+
+    <!-- MainActivity -->
+    <string name="main_activity_título">Prácticas Android</string>
+    <string name="main_activity_práctica1">Práctica 1</string>
+    <string name="main_activity_práctica2">Práctica 2</string>
+    <string name="main_activity_práctica3">Navegador</string>
+
+    <!-- NavegacionActivity -->
+    <string name="navegacion_activity_btn_abrir_navegador_externo">Abrir Navegador externo</string>
+    <string name="navegacion_activity_btn_abrir_webview">Abrir Webview</string>
+    <string name="navegacion_activity_texto_navegación">Desde una aplicación Android, se pude acceder a páginas webs, mediante el nave-gador externo o mediante Webviews</string>
+
+
+    <!-- SmartSolarActivity -->
+    <string name="smart_solar_activity_atrás">Atrás</string>
+    <string name="smart_solar_activity_título">Smart Solar</string>
+    <string name="smart_solar_activity_mi_instalación">Mi instalación</string>
+    <string name="smart_solar_activity_energía">Energía</string>
+    <string name="smart_solar_activity_detalles">Detalles</string>
+
+
+    <!-- FirstFragmentFactura -->
+    <string name="first_fragment_factura_consumo">Consumo</string>
+    <string name="first_fragment_factura_ktor">Ktor</string>
+    <string name="first_fragment_factura_switch">Switch</string>
+    <string name="first_fragment_factura_facturas">Facturas</string>
+
 
 </resources>

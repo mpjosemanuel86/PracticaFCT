@@ -46,7 +46,7 @@ class FirstFragmentFactura : Fragment() {
         }
 
         // Configurar el ImageButton para volver a MainActivity
-        val backButton: ImageButton = view.findViewById(R.id.consumo_back)
+        val backButton: ImageButton = view.findViewById(R.id.ib_consumo_volver)
         backButton.setOnClickListener {
             requireActivity().finish() // Cierra la actividad actual (el fragmento está en una actividad)
         }
@@ -66,7 +66,7 @@ class FirstFragmentFactura : Fragment() {
                 facturasAdapter.updateFacturas(invoices)
             }
         }
-        val btnLoadFromKtor: Button = view.findViewById(R.id.btnLoadFromKtor)
+        val btnLoadFromKtor: Button = view.findViewById(R.id.btKtor)
         btnLoadFromKtor.setOnClickListener {
             // Llama a la función correspondiente en el ViewModel para cargar las facturas desde Ktor
             viewmodel.searchInvoicesWithKtor()

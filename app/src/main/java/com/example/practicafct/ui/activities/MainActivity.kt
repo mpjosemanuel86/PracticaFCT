@@ -72,10 +72,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initComponent() {
-        secondaryContainer1 = findViewById(R.id.secondary_container1)
-        secondaryContainer2 = findViewById(R.id.secondary_container2)
-        secondaryContainer3 = findViewById(R.id.secondary_container3)
-        ibLogout = findViewById(R.id.ibLogout)
+        secondaryContainer1 = findViewById(R.id.contenedor_secundario1)
+        secondaryContainer2 = findViewById(R.id.contenedor_secundario_2)
+        secondaryContainer3 = findViewById(R.id.contenedor_secundario3)
+        ibLogout = findViewById(R.id.ibCerrarSesión)
     }
 
     private fun initListeners() {

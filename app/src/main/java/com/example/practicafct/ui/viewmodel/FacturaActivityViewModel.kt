@@ -249,7 +249,7 @@ class FacturaActivityViewModel : ViewModel() {
             try {
                 val newInvoices = withContext(Dispatchers.IO) {
                     val client = HttpClient()
-                    val response: String = client.get("https://viewnextandroid4.wiremockapi.cloud/")
+                    val response: String = client.get("https://viewnextandroid2.wiremockapi.cloud/")
                     Json.decodeFromString<List<FacturaModelRoom>>(response)
                 }
                 invoices = newInvoices

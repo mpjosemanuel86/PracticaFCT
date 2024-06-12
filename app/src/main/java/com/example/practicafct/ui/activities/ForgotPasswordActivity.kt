@@ -25,8 +25,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        emailEditText = findViewById(R.id.et_forgot_email)
-        resetButton = findViewById(R.id.btn_forgot_remind_password)
+        emailEditText = findViewById(R.id.et_olvido_correo)
+        resetButton = findViewById(R.id.btn_olvido_recordar_contraseña)
         backButton = findViewById(R.id.btn_atras)
 
         resetButton.setOnClickListener {

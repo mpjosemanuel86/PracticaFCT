@@ -9,7 +9,7 @@
     tools:context=".ui.activities.FacturaActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/navHostFragment"
+        android:id="@+id/navegacionFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"

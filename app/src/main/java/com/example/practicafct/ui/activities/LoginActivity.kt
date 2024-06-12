@@ -36,12 +36,12 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        emailEditText = findViewById(R.id.editTextTextEmailAddress)
-        passwordEditText = findViewById(R.id.editTextTextPassword)
-        loginButton = findViewById(R.id.btLogin)
-        signUpButton = findViewById(R.id.btn_registrar)
-        forgotPasswordTextView = findViewById(R.id.tvForgetPass)
-        checkBoxRemember = findViewById(R.id.cbLoginRemember)
+        emailEditText = findViewById(R.id.et_correo_electrónico)
+        passwordEditText = findViewById(R.id.et_contraseña)
+        loginButton = findViewById(R.id.btIniciarSesión)
+        signUpButton = findViewById(R.id.btnRegistrar)
+        forgotPasswordTextView = findViewById(R.id.tvOlvidoContraseña)
+        checkBoxRemember = findViewById(R.id.cbRecordarInicioSesión)
 
         checkIfRemembered()
 
@@ -55,10 +55,10 @@ class LoginActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             if (checkBoxRemember.isChecked) {
                                 rememberUser(email, password)
+                            } else {
+                                clearRememberedUser()
                             }
-                            val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            navigateToMainActivity()
                         } else {
                             Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT)
                                 .show()
@@ -96,12 +96,19 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-
     private fun rememberUser(email: String, password: String) {
         val sharedPreferences = getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("email", email)
         editor.putString("password", password)
+        editor.apply()
+    }
+
+    private fun clearRememberedUser() {
+        val sharedPreferences = getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.remove("email")
+        editor.remove("password")
         editor.apply()
     }
 
@@ -113,22 +120,9 @@ class LoginActivity : AppCompatActivity() {
         if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
             emailEditText.setText(email)
             passwordEditText.setText(password)
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        val editor = sharedPreferences.edit()
-                        editor.remove("email")
-                        editor.remove("password")
-                        editor.apply()
-
-                        Toast.makeText(this, "Failed to automatically sign in.", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                }
+        } else {
+            emailEditText.setText("")
+            passwordEditText.setText("")
         }
     }
 

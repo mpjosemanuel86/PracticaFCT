@@ -17,7 +17,7 @@ class NavegacionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navegacion)
 
-        webView = findViewById(R.id.fragmentContainer)
+        webView = findViewById(R.id.fragmentoContenedor)
 
         findViewById<Button>(R.id.btnAbrirNavegador).setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.iberdrola.es"))

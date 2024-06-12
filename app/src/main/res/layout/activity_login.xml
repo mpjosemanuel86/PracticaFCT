@@ -17,12 +17,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/et_correo_electrónico"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="170dp"
         android:backgroundTint="@color/grey"
-        android:hint="@string/login_username_hint"
+        android:hint="@string/login_activity_usuario_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_logo_iberdrola" />
@@ -30,93 +30,92 @@
 
     <EditText
 
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/et_contraseña"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/grey"
-        android:hint="@string/auth_password_hint"
+        android:hint="@string/login_activity_contraseña_hint"
         android:inputType="textPassword"
         android:drawableEnd="@drawable/ic_eye_on"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/et_correo_electrónico" />
 
     <CheckBox
-        android:id="@+id/cbLoginRemember"
+        android:id="@+id/cbRecordarInicioSesión"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:buttonTint="@color/seed"
-        android:text="@string/recordarContraseña_loginActivity"
+        android:text="@string/login_activity_recordar_contraseña"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/et_contraseña" />
 
     <TextView
-        android:id="@+id/tvForgetPass"
+        android:id="@+id/tvOlvidoContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/recordarUsuario_loginActivity"
-        android:textStyle=""
+        android:text="@string/login_activity_recordar_usuario"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cbLoginRemember" />
+        app:layout_constraintTop_toBottomOf="@id/cbRecordarInicioSesión" />
 
     <View
         android:layout_width="140dp"
         android:layout_height="1dp"
         android:background="#000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvForgetPass" />
+        app:layout_constraintTop_toBottomOf="@+id/tvOlvidoContraseña" />
 
     <Button
 
         android:layout_marginTop="180dp"
-        android:id="@+id/btLogin"
+        android:id="@+id/btIniciarSesión"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="@string/btnEntrar_loginActivity"
-        app:layout_constraintTop_toBottomOf="@id/tvForgetPass"
+        android:text="@string/login_activity_btn_entrar"
+        app:layout_constraintTop_toBottomOf="@id/tvOlvidoContraseña"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
     <TextView
-        android:id="@+id/tvDivider"
+        android:id="@+id/tvSeparador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tambienPuedes_loginActivity"
-        app:layout_constraintBottom_toTopOf="@id/btn_registrar"
-        app:layout_constraintTop_toBottomOf="@id/btLogin"
-        app:layout_constraintStart_toEndOf="@id/startDivider"
-        app:layout_constraintEnd_toStartOf="@id/endDivider"
+        android:text="@string/login_activity_tambien_puedes"
+        app:layout_constraintBottom_toTopOf="@id/btnRegistrar"
+        app:layout_constraintTop_toBottomOf="@id/btIniciarSesión"
+        app:layout_constraintStart_toEndOf="@id/inicioSeparador"
+        app:layout_constraintEnd_toStartOf="@id/FinSeparador"
         />
     <com.google.android.material.divider.MaterialDivider
 
-        android:id="@+id/startDivider"
+        android:id="@+id/inicioSeparador"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDivider"
-        app:layout_constraintEnd_toStartOf="@id/tvDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSeparador"
+        app:layout_constraintEnd_toStartOf="@id/tvSeparador"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btLogin" />
+        app:layout_constraintTop_toBottomOf="@id/btIniciarSesión" />
 
     <com.google.android.material.divider.MaterialDivider
 
-        android:id="@+id/endDivider"
+        android:id="@+id/FinSeparador"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDivider"
-        app:layout_constraintStart_toEndOf="@id/tvDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSeparador"
+        app:layout_constraintStart_toEndOf="@id/tvSeparador"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btLogin" />
+        app:layout_constraintTop_toBottomOf="@id/btIniciarSesión" />
 
     <Button
-        android:id="@+id/btn_registrar"
+        android:id="@+id/btnRegistrar"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         style="@style/Widget.Material3.Button.OutlinedButton"
-        android:text="@string/btnRegistrarse_loginActivity"
+        android:text="@string/login_activity_btn_registrate"
         app:strokeWidth="3dp"
         app:strokeColor="@color/seed"
-        app:layout_constraintTop_toBottomOf="@id/tvDivider"
+        app:layout_constraintTop_toBottomOf="@id/tvSeparador"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

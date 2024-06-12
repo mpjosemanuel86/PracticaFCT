@@ -10,7 +10,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/title_container"
+        android:id="@+id/contenedor_título"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -22,10 +22,10 @@
 
 
         <TextView
-            android:id="@+id/title_text"
+            android:id="@+id/tv_titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Prácticas Android"
+            android:text="@string/main_activity_título"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,20 +34,20 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/secondary_container1"
+        android:id="@+id/contenedor_secundario1"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_container">
+        app:layout_constraintTop_toBottomOf="@id/contenedor_título">
 
         <TextView
-            android:id="@+id/title_practica1"
+            android:id="@+id/titulo_practica1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:text="Práctica 1"
+            android:text="@string/main_activity_práctica1"
             android:textColor="@android:color/black"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +57,7 @@
         </TextView>
 
         <ImageView
-            android:id="@+id/button1"
+            android:id="@+id/iv_práctica1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -75,30 +75,30 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/separador1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="5dp"
         android:background="#DDDDDD"
-        app:layout_constraintTop_toBottomOf="@id/secondary_container1" />
+        app:layout_constraintTop_toBottomOf="@id/contenedor_secundario1" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/secondary_container2"
+        android:id="@+id/contenedor_secundario_2"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
+        app:layout_constraintTop_toBottomOf="@+id/separador1">
 
         <TextView
-            android:id="@+id/title_practica2"
+            android:id="@+id/título_práctica2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:text="Práctica 2"
+            android:text="@string/main_activity_práctica2"
             android:textColor="@android:color/black"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -108,7 +108,7 @@
         </TextView>
 
         <ImageView
-            android:id="@+id/button2"
+            android:id="@+id/iv_práctica2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -127,31 +127,31 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/separador2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="5dp"
         android:background="#DDDDDD"
-        app:layout_constraintTop_toBottomOf="@id/secondary_container2">
+        app:layout_constraintTop_toBottomOf="@id/contenedor_secundario_2">
 
     </View>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/secondary_container3"
+        android:id="@+id/contenedor_secundario3"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view2">
+        app:layout_constraintTop_toBottomOf="@id/separador2">
 
         <TextView
-            android:id="@+id/title_practica3"
+            android:id="@+id/título_práctica3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
-            android:text="Navegador"
+            android:text="@string/main_activity_práctica3"
             android:textColor="@android:color/black"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -161,7 +161,7 @@
         </TextView>
 
         <ImageView
-            android:id="@+id/button3"
+            android:id="@+id/iv_práctica3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -179,17 +179,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/view3"
+        android:id="@+id/separador3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="5dp"
         android:background="#DDDDDD"
-        app:layout_constraintTop_toBottomOf="@id/secondary_container3" />
+        app:layout_constraintTop_toBottomOf="@id/contenedor_secundario3" />
 
 
     <ImageButton
-        android:id="@+id/ibLogout"
+        android:id="@+id/ibCerrarSesión"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"

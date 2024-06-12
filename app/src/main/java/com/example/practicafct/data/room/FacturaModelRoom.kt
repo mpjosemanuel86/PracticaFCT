@@ -1,7 +1,9 @@
 package com.example.practicafct.data.room
 
 import androidx.room.Entity
+import kotlinx.serialization.Serializable
 
+@Serializable
 // Definición de la entidad de base de datos para representar facturas
 @Entity(tableName = "factura_tabla", primaryKeys = ["importeOrdenacion", "fecha"])
 class FacturaModelRoom(

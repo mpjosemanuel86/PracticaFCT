@@ -14,7 +14,7 @@
         android:id="@+id/smartSolarToolbar"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/ic_chevron_left"
-        app:title="Atrás"
+        app:title="@string/smart_solar_activity_atrás"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
             android:layout_marginTop="10dp"
             android:textSize="26sp"
             android:textStyle="bold"
-            android:text="Smart Solar"
+            android:text="@string/smart_solar_activity_título"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
         </TextView>
@@ -61,19 +61,19 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mi instalación"
+                android:text="@string/smart_solar_activity_mi_instalación"
                 >
             </com.google.android.material.tabs.TabItem>
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Energía"
+                android:text="@string/smart_solar_activity_energía"
                 >
             </com.google.android.material.tabs.TabItem>
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detalles"
+                android:text="@string/smart_solar_activity_detalles"
                 >
             </com.google.android.material.tabs.TabItem>
 
