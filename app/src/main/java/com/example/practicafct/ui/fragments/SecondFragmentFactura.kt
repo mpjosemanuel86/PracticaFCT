@@ -11,8 +11,6 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
-
-
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -45,6 +43,8 @@ class SecondFragmentFactura : Fragment() {
     private lateinit var paymentPlan: CheckBox
     private val viewModel: FacturaActivityViewModel by viewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var selectedDesdeDate: Calendar? = null
+    private var selectedHastaDate: Calendar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +67,6 @@ class SecondFragmentFactura : Fragment() {
         initComponents()
         loadFilters()
     }
-
 
     private fun initComponents() {
         initSeekBar()
@@ -129,26 +128,42 @@ class SecondFragmentFactura : Fragment() {
             { _, year, month, dayOfMonth ->
                 val selectedDate = "$dayOfMonth/${month + 1}/$year"
                 btnDesde.text = selectedDate
+                selectedDesdeDate = Calendar.getInstance().apply {
+                    set(year, month, dayOfMonth)
+                }
             },
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH)
         )
+
+        selectedHastaDate?.let {
+            datePickerDialog.datePicker.maxDate = it.timeInMillis
+        }
+
         datePickerDialog.show()
     }
 
-    fun showDatePickerHasta(view: View) {
+    private fun showDatePickerHasta(view: View) {
         val cal = Calendar.getInstance()
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, year, month, dayOfMonth ->
                 val selectedDate = "$dayOfMonth/${month + 1}/$year"
                 btnHasta.text = selectedDate
+                selectedHastaDate = Calendar.getInstance().apply {
+                    set(year, month, dayOfMonth)
+                }
             },
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),
             cal.get(Calendar.DAY_OF_MONTH)
         )
+
+        selectedDesdeDate?.let {
+            datePickerDialog.datePicker.minDate = it.timeInMillis
+        }
+
         datePickerDialog.show()
     }
 
