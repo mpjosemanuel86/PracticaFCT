@@ -63,4 +63,27 @@
     <string name="first_fragment_factura_facturas">Facturas</string>
 
 
+    <!-- FragmentInformación -->
+    <string name="fragment_informacion_estado_solicitud">Estado solicitud autoconsumo</string>
+    <string name="fragment_información_texto_descripción">El tiempo estimado de activación de tu autoconsumo es de 1 a 2 meses, éste variará en función de tu comunidad autónoma y distribuidora</string>
+    <string name="fragment_información_aceptar">Aceptar</string>
+
+
+    <!-- PantallaDetallesFragment -->
+    <string name="pantalla_detalles_fragment_CAU">CAU (Código Autoconsumo)</string>
+    <string name="pantalla_detalles_fragment_estado_solicitud_alta">No hemos recibido ninguna solicitud de autoconsumo</string>
+    <string name="pantalla_detalles_fragment_tipo_autoconsumo">Tipo autoconsumo</string>
+    <string name="pantalla_detalles_fragment_excedentes_y_compensación">Con excedentes y compensación individual - Consumo</string>
+    <string name="pantalla_detalles_fragment_compensaciónn_de_excedentes">Compensación de excedentes</string>
+    <string name="pantalla_detalles_fragment_precio_pvpc">Precio PVPC</string>
+    <string name="pantalla_detalles_fragment_potencia_de_instalación">Potencia de instalación</string>
+    <string name="pantalla_detalles_fragment__5kwp">5kWp</string>
+
+    <!-- PantallaEnergíaFragment -->
+    <string name="pantalla_energía_fragment_mensaje">Estamos trabajando en mejorar la App. Tus paneles solares siguen produciendo, en breve podrás seguir viendo tu producción solar. Sentimos las molestias.</string>
+
+    <!-- PantallaInstalaciónFragment -->
+    <string name="pantalla_instalacion_fragment_info_fotovoltaica">Aquí tienes los datos de tu instalación fotovoltaica en tiempo real</string>
+
+
 </resources>

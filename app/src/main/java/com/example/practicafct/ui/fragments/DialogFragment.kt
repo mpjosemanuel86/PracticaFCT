@@ -21,7 +21,7 @@ class MyDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonOk = view.findViewById<Button>(R.id.button_ok)
+        val buttonOk = view.findViewById<Button>(R.id.btn_aceptar)
 
         buttonOk.setOnClickListener {
             dismiss()

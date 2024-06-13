@@ -10,11 +10,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewInstalacion"
+        android:id="@+id/tvInstalacion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="16sp"
-        android:text="Aquí tienes los datos de tu instalación fotovoltaica en tiempo real"
+        android:text="@string/pantalla_instalacion_fragment_info_fotovoltaica"
         />
 
     <TextView
@@ -23,7 +23,7 @@
         android:textSize="16sp"
         android:layout_marginTop="35dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewInstalacion"
+        app:layout_constraintTop_toBottomOf="@+id/tvInstalacion"
         android:text="Autoconsumo: "
         android:textColor="@color/grey"
         android:id="@+id/textViewInstalacionCuerpo"

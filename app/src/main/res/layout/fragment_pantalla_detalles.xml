@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CAU (Código Autoconsumo)"
+        android:text="@string/pantalla_detalles_fragment_CAU"
         android:textColor="@color/grey"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:paddingEnd="30dp"
-        tools:text="No hemos recibido ninguna solicitud de autoconsumo"
+        tools:text="@string/pantalla_detalles_fragment_estado_solicitud_alta"
         android:inputType="none"
         android:id="@+id/etEstado"
         android:focusable="false"
@@ -71,7 +71,7 @@
         android:id="@+id/tvTipo"
         app:layout_constraintTop_toBottomOf="@+id/etEstado"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Tipo autoconsumo"
+        android:text="@string/pantalla_detalles_fragment_tipo_autoconsumo"
         />
     <EditText
         android:layout_width="match_parent"
@@ -79,7 +79,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTipo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Con excedentes y compensación individual - Consumo"
+        tools:text="@string/pantalla_detalles_fragment_excedentes_y_compensación"
         android:inputType="none"
         android:id="@+id/etTipo"
         android:focusable="false"
@@ -92,7 +92,7 @@
         android:id="@+id/tvCompensacion"
         app:layout_constraintTop_toBottomOf="@+id/etTipo"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Compensación de excedentes"
+        android:text="@string/pantalla_detalles_fragment_compensaciónn_de_excedentes"
         />
     <EditText
         android:layout_width="match_parent"
@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCompensacion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Precio PVPC"
+        tools:text="@string/pantalla_detalles_fragment_precio_pvpc"
         android:inputType="none"
         android:id="@+id/etCompensacion"
         android:focusable="false"
@@ -113,7 +113,7 @@
         android:id="@+id/tvPotencia"
         app:layout_constraintTop_toBottomOf="@+id/etCompensacion"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Potencia de instalación"
+        android:text="@string/pantalla_detalles_fragment_potencia_de_instalación"
         />
     <EditText
         android:layout_width="match_parent"
@@ -121,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPotencia"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="5kWp"
+        tools:text="@string/pantalla_detalles_fragment__5kwp"
         android:inputType="none"
         android:id="@+id/etPotencia"
         android:focusable="false"

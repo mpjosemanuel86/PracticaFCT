@@ -7,32 +7,32 @@
     android:padding="20dp">
 
     <TextView
-        android:id="@+id/dialog_title"
+        android:id="@+id/tv_título_estado_solicitud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Estado solicitud autoconsumo"
+        android:text="@string/fragment_informacion_estado_solicitud"
         android:textAlignment="center"
         android:textAppearance="?attr/textAppearanceHeadline6" />
 
     <TextView
-        android:id="@+id/tv_description"
+        android:id="@+id/tv_descripción"
         android:layout_width="301dp"
         android:layout_height="136dp"
         android:ellipsize="end"
         android:lineSpacingExtra="4dp"
         android:maxLines="4"
         android:padding="16dp"
-        android:text="El tiempo estimado de activación de tu autoconsumo es de 1 a 2 meses, éste variará en función de tu comunidad autónoma y distribuidora"
+        android:text="@string/fragment_información_texto_descripción"
         android:textAlignment="center"
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/button_ok"
+        android:id="@+id/btn_aceptar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Aceptar" />
+        android:text="@string/fragment_información_aceptar" />
 
 </LinearLayout>
